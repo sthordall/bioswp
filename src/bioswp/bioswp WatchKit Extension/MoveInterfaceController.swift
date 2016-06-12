@@ -63,13 +63,9 @@ class MoveInterfaceController: WKInterfaceController {
         instructionLabel.setText("Great success!")
         
         let accelerometerData:CMSensorDataList = recorder.accelerometerDataFromDate(moveDate!, toDate: NSDate())!
-        if let container = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.io.sthordall.app.bioswp") {
-            let fileUrl = container.URLByAppendingPathComponent("movedata")
-            print(fileUrl)
-            for data in accelerometerData {
-                print(data)
-            }
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let moveData = NSKeyedArchiver.archivedDataWithRootObject(accelerometerData)
+        defaults.setObject(moveData, forKey: "moveData")
         self.popToRootController()
     }
     

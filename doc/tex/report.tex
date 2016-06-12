@@ -1,0 +1,34 @@
+% !TeX spellcheck = en_GB
+\documentclass[12pt]{report}
+% Relevant for frontpage and headers
+\course{02238: Biometric Systems}
+\title{Term Paper}
+\author{Stephan Thordal Larsen (s146907)}
+\rhead{s146907}
+\date{16 May 2016}
+
+% Document specific includes
+\usetikzlibrary{chains}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{footnote}
+
+\newcommand*\rot{\rotatebox{90}}
+
+\begin{document}
+\maketitle % comment this out to \ove the front page
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\input{introduction}
+\input{analysis}
+\input{prototype}
+\input{conclusion}
+\bibliographystyle{plainurl}
+\bibliography{references}{}
+\end{document}

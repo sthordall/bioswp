@@ -24,7 +24,11 @@
                                     <action selector="playButtonActivated" destination="AgC-eL-Hgc" id="ZYh-WK-ZA3"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Move Info" icon="info" id="Bbq-fa-DFq" userLabel="MoveInfo"/>
+                            <menuItem title="Move Info" icon="info" id="Bbq-fa-DFq" userLabel="MoveInfo">
+                                <connections>
+                                    <action selector="moveInfoButtonActivated" destination="AgC-eL-Hgc" id="RGc-hm-M4q"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </controller>
@@ -36,9 +40,11 @@
             <objects>
                 <controller identifier="moveScene" title="Move" id="oKw-6x-eWl" customClass="MoveInterfaceController" customModule="bioswp_WatchKit_Extension">
                     <items>
-                        <label width="1" height="93.5" alignment="left" text="Do a special move within the next 5 seconds" textAlignment="center" numberOfLines="6" id="pC0-cx-p72"/>
+                        <label width="1" height="93.5" alignment="left" text="Do a special move within the next 5 seconds" textAlignment="center" numberOfLines="6" id="pC0-cx-p72">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
                         <timer width="1" alignment="left" hidden="YES" textAlignment="center" previewedSeconds="5" id="N68-ax-qYH">
-                            <fontDescription key="font" style="UICTFontTextStyleCallout"/>
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                             <calendarUnit key="units" second="YES"/>
                         </timer>
                         <button width="1" alignment="left" title="Start" id="mHy-E2-96E" userLabel="StartButton">
@@ -55,6 +61,37 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="553" y="347"/>
+        </scene>
+        <!--Move Info-->
+        <scene sceneID="mgc-95-saW">
+            <objects>
+                <controller identifier="moveInfoScene" title="Move Info" id="3xa-3q-boi" customClass="MoveInfoInterfaceController" customModule="bioswp_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="afS-DV-hhW">
+                            <items>
+                                <tableRow id="t8e-pd-38u" customClass="MoveInfoRowController" customModule="bioswp_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="AAm-un-Ba5">
+                                        <items>
+                                            <label height="1" alignment="left" text="Label" textAlignment="center" id="38P-ol-7hE" userLabel="XLabel"/>
+                                            <label height="1" alignment="left" text="Label" textAlignment="center" id="JID-cY-NUp" userLabel="YLabel"/>
+                                            <label height="1" alignment="left" text="Label" textAlignment="center" id="L9N-gS-0bw" userLabel="ZLabel"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="x" destination="38P-ol-7hE" id="04h-2P-oeL"/>
+                                        <outlet property="y" destination="JID-cY-NUp" id="90R-HT-nbw"/>
+                                        <outlet property="z" destination="L9N-gS-0bw" id="gHh-Sx-igB"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="moveInfoTable" destination="afS-DV-hhW" id="GAP-ZD-IzZ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="564" y="631"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">

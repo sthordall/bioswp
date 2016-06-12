@@ -21,20 +21,16 @@ class MainInterfaceController: WKInterfaceController {
     
     // MARK: Actions
     
-    @IBAction func enrollButtonActivated() {
-        if let recFileUrl = recFileURL(authRecFileName) {
-            self.presentAudioRecorderControllerWithOutputURL(
-                recFileUrl,
-                preset: WKAudioRecorderPreset.HighQualityAudio,
-                options: nil,
-                completion: { (didSave, error) -> Void in
-                    print("error: \(error)\n")
-                    if didSave {
-                        self.pushControllerWithName("moveScene", context: nil)
-                    }
-                })
-        } 
+    @IBAction func moveInfoButtonActivated() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let moveData = defaults.objectForKey("moveData") as? CMSensorDataList
+       self.pushControllerWithName("moveInfoScene", context: moveData)
     }
+    
+    @IBAction func enrollButtonActivated() {
+        rec(authRecFileName)
+    }
+    
     @IBAction func playButtonActivated() {
         if let playFileUrl = recFileURL(authRecFileName) {
             self.presentMediaPlayerControllerWithURL(
@@ -47,6 +43,20 @@ class MainInterfaceController: WKInterfaceController {
     }
     
     // MARK: Helpers
+    func rec(toFile: String) {
+         if let recFileUrl = recFileURL(toFile) {
+            self.presentAudioRecorderControllerWithOutputURL(
+                recFileUrl,
+                preset: WKAudioRecorderPreset.HighQualityAudio,
+                options: nil,
+                completion: { (didSave, error) -> Void in
+                    print("error: \(error)\n")
+                    if didSave {
+                        self.pushControllerWithName("moveScene", context: nil)
+                    }
+                })
+        }    
+    }
     
     func recFileURL(fileName:String) -> NSURL? {
         if let container = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.io.sthordall.app.bioswp") {
