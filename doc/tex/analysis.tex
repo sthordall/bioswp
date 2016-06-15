@@ -48,7 +48,6 @@ one approach could be gait recognition. Gait recognition allows for
 identification from how the subject walks, and research points towards this
 being possible from similar sensors within smartphones \cite{7181946}. 
 
-
 \subsubsection{Microphone}
 
 
@@ -65,8 +64,8 @@ access to the NFC chip, only allowing it to be used with their own \textit{Apple
 The SDK does not allow for full control of all aspects of the watch. There are
 some limitations to the way Apple runs third-party applications on the platform.
 Most of the limitations are of course present due to user experience and battery
-lifetime. The watch does not allow for continuous background services, it is
-dependent on having an iPhone connected to enable internet connections, apps can not
+lifetime constraints. The watch does not allow for continuous background services, it is
+dependent on having an iPhone connected to enable internet connectivity, apps can not
 hinder the screen in automatically shutting off and the processing power is of
 course limited in comparison to smartphones and laptops.
 
@@ -76,9 +75,34 @@ ability to run background services and the automatic screen on/off.
 The ability to run background services would be necessary if something like gait
 recognition should function. This is not possible, and limits the continuous
 tracking of an individual for identification purposes. 
-This is also the case with auto screen on/off..
+
+If identification should rely on movement data from the accelerometer and
+gyroscope, the automatic screen control is a limiting functionality. When one
+moves the watch the screen very likely turns off, and the process halts. It is
+possible to start fitness sessions and extract the data from here ...
 % TODO: Include auto screen turn-off, continuous background services, dependency
 % on phone, platform independence, limited processing power
 
 \subsection{Possible systems}
 % TODO: Mention possible setups, from findings in analysis
+With the sensors and limitations taken into account, two possible systems seems
+probable. Common to both systems are the users active participation, and the
+watching being still. This is to overcome the limitations of automatic screen
+on/off and not being able to run background services.
+
+\subsubsection{Voice Recognition}
+This approach could utilize the built-in microphone to record and extract
+features from the subjects voice. The detection could rely both on the words
+being said and not. Voice recognition in general has seen a growth in use, due
+to the growing popularity and efficiency of modern machine learning
+technologies. This approach would therefore be both possible and convenient for
+users, already comfortable with talking to their smart devices. 
+The system would need to extract features of the subjects voice, not only said
+words. This is quite challenging and might also need machine learning tactics to
+perform adequately. Due to the limited processing power of the Apple Watch, and
+the requirements from machine learning, the recorded sound samples might need to
+be sent to a central server for processing. This could result in privacy issues,
+   and should therefore be investigated more thoroughly. % TODO: Reference article
+
+\subsubsection{Photoplethysmography Recognition}
+
