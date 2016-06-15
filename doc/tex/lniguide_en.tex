@@ -1,0 +1,52 @@
+\documentclass[english]{lni}
+% for German use:
+%\documentclass{lni}
+
+\IfFileExists{latin1.sty}{\usepackage{latin1}}{\usepackage{isolatin1}}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings} %if lstlistings is used
+\usepackage{changepage} %for changing topmargin on first page
+\usepackage[figurename=Fig., tablename=Tab., small]{caption}[2008/04/01]
+\renewcommand{\lstlistingname}{List.}    % Listingname is now List. 
+
+%Beginning of page count for this paper
+\setcounter{page}{1}
+
+%head line settings
+\pagestyle{fancy}
+\fancyhead{} % clears the settings
+\fancyhead[RO]{\small $<$Firstname Lastname [et. al.]$>$(Ed.): $<$Book Title$>$, \linebreak Lecture Notes in Informatics (LNI), Gesellschaft f\"ur Informatik, Bonn $<$Year$>$ \hspace{5pt} \thepage \hspace{0.05cm}}
+\fancyfoot{} % clears footer settings
+\renewcommand{\headrulewidth}{0.4pt} %horizontal line below header
+\setcounter{footnote}{0}
+
+\author{Stephan Thordal Larsen\footnote{DTU Compute, Denmark,
+s146907@student.dtu.dk}}
+\title{Biometric Systems - Term Paper \\ Smart Watch Prototype (SWP)}
+\begin{document}
+\maketitle
+
+\renewcommand{\refname}{References}
+\setcounter{footnote}{1} %Change to the number of authors for a correct numbering of the foot notes
+
+\begin{abstract}
+    ABSTRACT YADA YADA
+\end{abstract}
+\begin{keywords}
+    YADA, YADA, YADA
+\end{keywords}
+
+\input{introduction}
+\input{analysis}
+\input{prototype}
+\input{conclusion}
+
+\bibliographystyle{lnig}
+\bibliography{lniguide}
+
+\end{document}
+
+
+

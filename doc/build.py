@@ -3,7 +3,7 @@ from subprocess import call
 import glob, os
 
 texDir = './tex/'
-texMaster = 'report'
+texMaster = 'lniguide_en'
 
 print('\nBuilding LaTeX with latex-mk...')
 os.chdir(texDir)
