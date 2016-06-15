@@ -61,14 +61,23 @@ class MoveInterfaceController: WKInterfaceController {
     func timerDone() {
         countdownTimer.setHidden(true)
         instructionLabel.setText("Great success!")
-        
-        let accelerometerData:CMSensorDataList = recorder.accelerometerDataFromDate(moveDate!, toDate: NSDate())!
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let moveData = NSKeyedArchiver.archivedDataWithRootObject(accelerometerData)
-        defaults.setObject(moveData, forKey: "moveData")
+        let fileManager = NSFileManager()
+        if let filePath = moveFileURL("moveData")?.path {
+            let accelerometerData:CMSensorDataList = recorder.accelerometerDataFromDate(moveDate!, toDate: NSDate())!
+            let moveData = NSKeyedArchiver.archivedDataWithRootObject(accelerometerData)
+            fileManager.createFileAtPath(filePath, contents: moveData, attributes: nil)
+        }
         self.popToRootController()
     }
     
+    func moveFileURL(fileName:String) -> NSURL? {
+        if let container = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.io.sthordall.app.bioswp") {
+            return container.URLByAppendingPathComponent(fileName, isDirectory: false)
+        } else {
+            return nil
+        }
+    }
+  
     // MARK: Overrides
     
     override func awakeWithContext(context: AnyObject?) {

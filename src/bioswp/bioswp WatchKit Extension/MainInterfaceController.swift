@@ -24,7 +24,7 @@ class MainInterfaceController: WKInterfaceController {
     @IBAction func moveInfoButtonActivated() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let moveData = defaults.objectForKey("moveData") as? CMSensorDataList
-       self.pushControllerWithName("moveInfoScene", context: moveData)
+        self.pushControllerWithName("moveInfoScene", context: moveData)
     }
     
     @IBAction func enrollButtonActivated() {

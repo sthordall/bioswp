@@ -1,21 +1,53 @@
 \section{Analysis}
-This section will analyze the potential for biometric measurements on the
+This section will analyze the potential for capturing biometrics on the
 \textit{Apple Watch}. The analysis will cover both the hardware and
 software, i.e.\ which sensors are included in the watch and how they are 
-utilized by the SDK. The sensors will also be evaluated on their usefulness 
-for biometric identification. Finally the analysis should result in a
-selection of sensors found appropriate for the prototype.
+utilized by the provided frameworks. The sensors will also be evaluated 
+on their usefulness for biometric identification. Finally the analysis 
+should result in a selection of sensors found appropriate for the prototype.
 
 \subsection{Sensors}
 The \textit{Apple Watch} includes a multitude of sensors \cite{watchspecs}, 
-which are used mainly for activity, fitness and health tracking, but they are
-also used for some security functionalities.
+which are used mainly for usability, activity, fitness and health tracking, but
+they are also used for some security functionalities, such as using the heart 
+rate sensor, to ensure the owner who unlocked the watch, has not removed the 
+watch since authorization occurred.
 
 \subsubsection{Heart rate sensor}
+The integrated heart rate sensor uses the technology
+\textit{photoplethysmography}. Which functions by using green LED's to
+illuminate the veins in the wrist and photodiodes to detect the amount of blood
+flowing in said veins. This allows the watch to detect the wearers heart rate
+\cite{watchheartrate}.
+The quality of measurements rely on the wearers fit of the watch, but when
+fitted correctly heart rate data is provided through Apple's \textit{HealthKit}
+framework. The heart rate data can be fetched as a stream through an instance of
+\texttt{HKHealthStore}, and can both be fetched as a calculated heart rate, and
+as raw sensor data \cite{healthkitfw}.
+Heart rate data for biometric identification has been explored by other vendors
+than Apple \cite{nymiwhitepaper}, but this has been done with different sensors
+and raw sensor data. It has been found possible with raw sensor data to identify
+individuals from photoplethysmography signals, like the ones obtained from the
+Apple Watch sensor \cite{kavsaoglu2013a}. A photoplethysmography sensor
+therefore seems like a potential biometric characteristic capture device.
 
-\subsubsection{Accelerometer}
 
-\subsubsection{Gyroscope}
+\subsubsection{Accelerometer \& Gyroscope}
+Both an accelerometer and a gyroscope are located in the watch, and these are
+used for features like activity tracking and rotation detection for screen
+auto on/off. Raw data is accessible from both sensors through the
+\textit{CoreMotion} framework, from \texttt{CMAccelerometerData} and
+\texttt{CMGyroData} accordingly \cite{coremotionfw}. The accelerometer allows
+for 3-axis movement tracking, and the gyroscope detects rotation. These in
+combination allow for precise movement tracking, but are limited to track the
+movement of the wrist. This has been used for activity tracking and pedometer 
+in many smart devices, but one might need to investigate the precision of this
+before using it for identification. 
+Experiments on identifying individuals from motion data has been tested, and
+one approach could be gait recognition. Gait recognition allows for
+identification from how the subject walks, and research points towards this
+being possible from similar sensors within smartphones \cite{7181946}. 
+
 
 \subsubsection{Microphone}
 
@@ -25,11 +57,28 @@ The potential of an NFC chip in the watch seems promising for access control, as
 it could allow for interaction with third-party devices, i.e.\ NFC readers. This
 could be utilized for doors which rely on NFC key cards, where the watch could
 function as a secure device containing the NFC key cards. 
-Unfortunately This is simply not possible, as Apple has restricted developer 
+Unfortunately this is simply not possible, as Apple has restricted developer 
 access to the NFC chip, only allowing it to be used with their own \textit{Apple
     Pay} service. 
 
 \subsection{Limitations}
-The SDK does not allow for full control of all aspects of the watch. 
+The SDK does not allow for full control of all aspects of the watch. There are
+some limitations to the way Apple runs third-party applications on the platform.
+Most of the limitations are of course present due to user experience and battery
+lifetime. The watch does not allow for continuous background services, it is
+dependent on having an iPhone connected to enable internet connections, apps can not
+hinder the screen in automatically shutting off and the processing power is of
+course limited in comparison to smartphones and laptops.
+
+The main limitations affecting the development of the prototype are the lacking
+ability to run background services and the automatic screen on/off.
+
+The ability to run background services would be necessary if something like gait
+recognition should function. This is not possible, and limits the continuous
+tracking of an individual for identification purposes. 
+This is also the case with auto screen on/off..
 % TODO: Include auto screen turn-off, continuous background services, dependency
 % on phone, platform independence, limited processing power
+
+\subsection{Possible systems}
+% TODO: Mention possible setups, from findings in analysis

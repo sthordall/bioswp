@@ -5,4 +5,17 @@ Apple Inc.
 \newblock Apple watch - technical specifications, 2016.
 \newblock URL: \url{https://support.apple.com/kb/SP735?locale=en_US}.
 
+\bibitem{watchheartrate}
+Apple Inc.
+\newblock Your heart rate. what it means, and where on apple watch you’ll
+  find it., 2016.
+\newblock URL: \url{https://support.apple.com/en-us/HT204666}.
+
+\bibitem{nymiwhitepaper}
+Nymi Inc.
+\newblock Heartid white paper.
+\newblock Technical report, 7 2015.
+\newblock URL:
+  \url{https://nymi.com/sites/default/files/HeartID-White-Paper.pdf}.
+
 \end{thebibliography}
