@@ -1,4 +1,13 @@
-\begin{thebibliography}{In16b}
+\begin{thebibliography}{Ap16}
+
+\bibitem[Ap16]{watchspecs}
+Apple Watch - Technical Specifications,
+  support.apple.com/kb/SP735?locale=en\_US, Apple Inc., Fetched: 12.06.2016.
+
+\bibitem[Co13]{coremotionfw}
+Core Motion Framework Reference,
+  https://developer.apple.com/library/ios/documentation/CoreMotion/Reference/CoreMotion\_Reference/,
+  Apple Inc., Fetched: 15.06.2016.
 
 \bibitem[Fe15]{7181946}
 Ferrero, R.; Gandino, F.; Montrucchio, B.; Rebaudengo, M.; Velasco, A.;
@@ -6,26 +15,23 @@ Ferrero, R.; Gandino, F.; Montrucchio, B.; Rebaudengo, M.; Velasco, A.;
 \newblock In: 2015 4th Mediterranean Conference on Embedded Computing (MECO).
 \newblock pp. 368--373, June 2015.
 
-\bibitem[In13]{coremotionfw}
-Core Motion Framework Reference.
-
 \bibitem[In15]{nymiwhitepaper}
 Inc., Nymi: HeartID White Paper.
-\newblock Technical report, 7 2015.
-
-\bibitem[In16a]{watchspecs}
-Apple Watch - Technical Specifications.
-
-\bibitem[In16b]{healthkitfw}
-The HealthKit Framework.
-
-\bibitem[In16c]{watchheartrate}
-Your heart rate. What it means, and where on Apple Watch you’ll find it.
+\newblock 7 2015.
 
 \bibitem[Ka13]{kavsaoglu2013a}
 Kavsaoglu, A.~Resit; Polat, Kemal; Bozkurt, M.~Recep; Muthusamy, Hariharan:
   Feature Extraction for Biometric Recognition with Photoplethysmography
   Signals.
 \newblock Signal Processing and Communications Applications Conference, 2013.
+
+\bibitem[Th16]{healthkitfw}
+The HealthKit Framework,
+  https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit\_Framework/,
+  Apple Inc., Fetched: 15.06.2016.
+
+\bibitem[Yo16]{watchheartrate}
+Your heart rate. What it means, and where on Apple Watch you’ll find it.,
+  https://support.apple.com/en\-us/HT204666, Apple Inc., Fetched: 13.06.2016.
 
 \end{thebibliography}

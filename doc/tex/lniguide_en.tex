@@ -17,7 +17,8 @@
 %head line settings
 \pagestyle{fancy}
 \fancyhead{} % clears the settings
-\fancyhead[RO]{\small $<$Firstname Lastname [et. al.]$>$(Ed.): $<$Book Title$>$, \linebreak Lecture Notes in Informatics (LNI), Gesellschaft f\"ur Informatik, Bonn $<$Year$>$ \hspace{5pt} \thepage \hspace{0.05cm}}
+\fancyhead[RO]{\small $<$Stephan Thordal Larsen (s146907)$>$, \linebreak 02238 - Biometric
+Systems - Term Paper (2016)\hspace{5pt} \thepage \hspace{0.05cm}}
 \fancyfoot{} % clears footer settings
 \renewcommand{\headrulewidth}{0.4pt} %horizontal line below header
 \setcounter{footnote}{0}
@@ -39,6 +40,17 @@ s146907@student.dtu.dk}}
 \end{keywords}
 
 \input{introduction}
+
+\clearpage
+%header setting after the second page
+\pagestyle{fancy}
+\fancyhead{} % clears header settings
+\fancyhead[RO]{\small Term Paper - Smart Watch Prototype \hspace{5pt} \thepage \hspace{0.05cm}}
+\fancyhead[LE]{\hspace{0.05cm}\small \thepage \hspace{5pt} Stephan Thordal
+Larsen (s146907)}
+\fancyfoot{} % clears all footer settings
+\renewcommand{\headrulewidth}{0.4pt} %line below header
+
 \input{analysis}
 \input{prototype}
 \input{conclusion}
