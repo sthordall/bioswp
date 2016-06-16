@@ -49,7 +49,20 @@ identification from how the subject walks, and research points towards this
 being possible from similar sensors within smartphones \cite{7181946}. 
 
 \subsubsection{Microphone}
+The watch contains a microphone, used for voice commands and speakerphone. The
+microphone can be accessed and used for recordings by the usage
+\texttt{AudioRecorderController} spawned with the function
+\texttt{presentAudioRecorderControllerWithOutputUrl}. 
 
+%Speech and voice recognition is a field which has benefited immensely from 
+%machine learning techniques, such as deep neural networks, over the past few 
+%years \cite{6296526}. Speaker recognition is therefore achievable, but is 
+%difficult to run on small smart devices, such as the Apple Watch, due to the 
+%powerful computations and machine learning techniques required. Nearly all 
+%available libraries and software needs to run on powerful servers, with neural
+%nets already trained. 
+%Furthermore most of the existing software found focuses on \textit{what} the 
+%subject says, and not \textit{who} the subject is.
 
 \subsubsection{NFC}
 The potential of an NFC chip in the watch seems promising for access control, as
@@ -79,12 +92,17 @@ tracking of an individual for identification purposes.
 If identification should rely on movement data from the accelerometer and
 gyroscope, the automatic screen control is a limiting functionality. When one
 moves the watch the screen very likely turns off, and the process halts. It is
-possible to start fitness sessions and extract the data from here ...
+possible to start workout sessions (\textit{HKWorkoutSession}) 
+\cite{workoutsession} and extract the data from here, so a workaround might be 
+possible, in order to extract continuous data.
+
 % TODO: Include auto screen turn-off, continuous background services, dependency
 % on phone, platform independence, limited processing power
 
 \subsection{Possible systems}
 % TODO: Mention possible setups, from findings in analysis
+% TODO: Argument FOR the selected prototype, mention why the others are not
+% chosen
 With the sensors and limitations taken into account, two possible systems seems
 probable. Common to both systems are the users active participation, and the
 watching being still. This is to overcome the limitations of automatic screen
@@ -95,14 +113,18 @@ This approach could utilize the built-in microphone to record and extract
 features from the subjects voice. The detection could rely both on the words
 being said and not. Voice recognition in general has seen a growth in use, due
 to the growing popularity and efficiency of modern machine learning
-technologies. This approach would therefore be both possible and convenient for
-users, already comfortable with talking to their smart devices. 
+technologies \cite{6296526}. This approach would therefore be both possible and
+convenient for users, already comfortable with talking to their smart devices. 
 The system would need to extract features of the subjects voice, not only said
-words. This is quite challenging and might also need machine learning tactics to
+words. This is quite challenging and might also need machine learning techniques to
 perform adequately. Due to the limited processing power of the Apple Watch, and
 the requirements from machine learning, the recorded sound samples might need to
 be sent to a central server for processing. This could result in privacy issues,
-   and should therefore be investigated more thoroughly. % TODO: Reference article
+as biometric authentication data is sent over the network.
+
+\subsubsection{Gait Recognition}
+%TODO: What would this require, how does it work etc.
 
 \subsubsection{Photoplethysmography Recognition}
+%TODO: What would this require, how does it work etc.
 

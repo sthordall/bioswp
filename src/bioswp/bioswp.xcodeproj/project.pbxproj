@@ -11,6 +11,7 @@
 		2F0B693A1D09A24400C11124 /* MoveInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0B69391D09A24400C11124 /* MoveInterfaceController.swift */; };
 		2F97FA1E1D09C39700C3708E /* MoveInfoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA1D1D09C39700C3708E /* MoveInfoInterfaceController.swift */; };
 		2F97FA201D09C68C00C3708E /* MoveInfoRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */; };
+		2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */; };
 		2FA376A21D09510E00FA208C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A11D09510E00FA208C /* AppDelegate.swift */; };
 		2FA376A41D09510E00FA208C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A31D09510E00FA208C /* ViewController.swift */; };
 		2FA376A71D09510E00FA208C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA376A51D09510E00FA208C /* Main.storyboard */; };
@@ -76,6 +77,7 @@
 		2F0B69391D09A24400C11124 /* MoveInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA1D1D09C39700C3708E /* MoveInfoInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInfoInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInfoRowController.swift; sourceTree = "<group>"; };
+		2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateInterfaceController.swift; sourceTree = "<group>"; };
 		2FA3769E1D09510E00FA208C /* bioswp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bioswp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA376A11D09510E00FA208C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA376A31D09510E00FA208C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				2FA376D01D09510F00FA208C /* Info.plist */,
 				2FA376C41D09510E00FA208C /* Supporting Files */,
 				2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */,
+				2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */,
 			);
 			path = "bioswp WatchKit Extension";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			files = (
 				2FA376CB1D09510E00FA208C /* NotificationController.swift in Sources */,
 				2F0B693A1D09A24400C11124 /* MoveInterfaceController.swift in Sources */,
+				2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */,
 				2F97FA1E1D09C39700C3708E /* MoveInfoInterfaceController.swift in Sources */,
 				2FA376C91D09510E00FA208C /* ExtensionDelegate.swift in Sources */,
 				2F97FA201D09C68C00C3708E /* MoveInfoRowController.swift in Sources */,
