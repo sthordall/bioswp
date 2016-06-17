@@ -12,7 +12,11 @@ import HealthKit
 
 class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     
-    // MARK:
+    // MARK: Outlets
+    @IBOutlet var instructionLabel: WKInterfaceLabel!
+    @IBOutlet var heartRateLabel: WKInterfaceLabel!
+    
+    // MARK: Private Variables
     private let healthStore = HKHealthStore()
     private let hearRateUnit = HKUnit(fromString: "count/min")
     
@@ -22,8 +26,11 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     private var startDate : NSDate?
     private var endDate : NSDate?
     
+    // MARK: Public Variables
+    var instruction: String?
     var dataStorePath : String?
     var sampleDuration : Double?
+    var completionClosure : () -> () = {() -> Void in return}
     
     // MARK: Overrides
     override func awakeWithContext(context: AnyObject?) {
@@ -32,14 +39,18 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
 
     override func willActivate() {
         super.willActivate()
+        instructionLabel.setText(instruction)
+        
         guard HKHealthStore.isHealthDataAvailable() else {
             displayError()
             return
         }
+        
         guard let quantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate) else {
             displayError()
             return
         }
+        
         let dataTypes = Set(arrayLiteral: quantityType)
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypes) { (success, error) ->  Void in
             if !success { self.displayError() }
@@ -48,6 +59,8 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
             startWorkout()
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                 self.stopWorkout()
+                self.completionClosure()
+                self.popToRootController()
             }
         }
     }

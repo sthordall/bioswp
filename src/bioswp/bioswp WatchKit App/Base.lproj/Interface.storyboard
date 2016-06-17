@@ -62,6 +62,27 @@
             </objects>
             <point key="canvasLocation" x="553" y="347"/>
         </scene>
+        <!--Heart Rate-->
+        <scene sceneID="Ao8-K1-mr0">
+            <objects>
+                <controller id="hKB-uk-fuZ" userLabel="Heart Rate" customClass="HeartRateInterfaceController" customModule="bioswp_WatchKit_Extension">
+                    <items>
+                        <label width="88" alignment="center" text="Instruction" textAlignment="center" numberOfLines="2" id="q9J-GG-r07">
+                            <fontDescription key="font" style="UICTFontTextStyleCallout"/>
+                        </label>
+                        <separator alignment="left" id="inp-tH-IiA"/>
+                        <label width="1" height="100" alignment="center" text="0" textAlignment="center" numberOfLines="2" id="zvJ-qO-7gH">
+                            <fontDescription key="font" style="UICTFontTextStyleCallout"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="heartRateLabel" destination="zvJ-qO-7gH" id="xzd-kh-6hC"/>
+                        <outlet property="instructionLabel" destination="q9J-GG-r07" id="6JA-95-YDN"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="842" y="347"/>
+        </scene>
         <!--Move Info-->
         <scene sceneID="mgc-95-saW">
             <objects>
@@ -91,7 +112,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="564" y="631"/>
+            <point key="canvasLocation" x="562" y="672"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
