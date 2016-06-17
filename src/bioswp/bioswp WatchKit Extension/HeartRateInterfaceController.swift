@@ -13,12 +13,17 @@ import HealthKit
 class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     
     // MARK:
-    let healthStore = HKHealthStore()
-    let hearRateUnit = HKUnit(fromString: "count/min")
+    private let healthStore = HKHealthStore()
+    private let hearRateUnit = HKUnit(fromString: "count/min")
     
-    var workoutActive = false
-    var workoutSession : HKWorkoutSession?
-    var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    private var workoutActive = false
+    private var workoutSession : HKWorkoutSession?
+    private var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    private var startDate : NSDate?
+    private var endDate : NSDate?
+    
+    var dataStorePath : String?
+    var sampleDuration : Double?
     
     // MARK: Overrides
     override func awakeWithContext(context: AnyObject?) {
@@ -39,7 +44,12 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypes) { (success, error) ->  Void in
             if !success { self.displayError() }
         }
-        
+        if let duration = sampleDuration {
+            startWorkout()
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                self.stopWorkout()
+            }
+        }
     }
 
     override func didDeactivate() {
@@ -74,6 +84,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     func workoutDidStart(date: NSDate) {
         // TODO: Start some animations
         if let query = getHeartRateStreamingQuery(date) {
+            startDate = date
             healthStore.executeQuery(query)
         } else {
             displayError()
@@ -83,17 +94,61 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     func workoutDidEnd(date: NSDate) {
         // TODO: When workout ends, save to injected NSURL
         if let query = getHeartRateStreamingQuery(date) {
+            endDate = date
             healthStore.stopQuery(query)
+            if let path = dataStorePath {
+                storeHeartRateData(startDate!, endDate: endDate!, location: path)
+            }
         } else {
             displayError()
         }
     }
-
+    
     func startWorkout() {
         self.workoutSession = HKWorkoutSession(activityType: HKWorkoutActivityType.Yoga,
                                               locationType: HKWorkoutSessionLocationType.Indoor)
         self.workoutSession?.delegate = self
         healthStore.startWorkoutSession(self.workoutSession!)
+        self.workoutActive = true
+    }
+    
+    func stopWorkout() {
+        if let workout = self.workoutSession {
+            healthStore.endWorkoutSession(workout)
+        }
+        self.workoutActive = false
+    }
+    
+    func storeHeartRateData(startDate: NSDate, endDate: NSDate, location: String) {
+        let heartRateType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
+        var heartRateArray = Array<Double>()
+        self.healthStore
+            .requestAuthorizationToShareTypes(nil, readTypes: [heartRateType], completion: {(success, error) -> Void in
+                let sortByTime = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+                let datePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: HKQueryOptions.None)
+                let query = HKSampleQuery(sampleType: heartRateType, predicate: datePredicate, limit: 1000, sortDescriptors: [sortByTime], resultsHandler: {(query, results, error) in
+                    guard let results = results else { return }
+                    for sample in results {
+                        let quantity = (sample as! HKQuantitySample).quantity
+                        let heartRateUnit = HKUnit(fromString: "count/min")
+                        heartRateArray.append(quantity.doubleValueForUnit(heartRateUnit))
+                    }
+                    do {
+                        let documentsDir = try NSFileManager.defaultManager()
+                                                            .URLForDirectory(.DocumentDirectory,
+                                                                             inDomain: .UserDomainMask,
+                                                                             appropriateForURL: nil,
+                                                                             create: true)
+                        
+                        try heartRateArray.description.writeToURL(NSURL(string: location, relativeToURL: documentsDir)!,
+                                                                  atomically: true,
+                                                                  encoding: NSASCIIStringEncoding)
+                    } catch {
+                       self.displayError("Could not save data to \(location)")
+                    }
+                })
+                self.healthStore.executeQuery(query)
+        })
     }
     
     func getHeartRateStreamingQuery(workoutStartDate: NSDate) -> HKQuery? {
