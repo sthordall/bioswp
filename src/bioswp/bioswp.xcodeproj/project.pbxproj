@@ -13,6 +13,8 @@
 		2F97FA201D09C68C00C3708E /* MoveInfoRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */; };
 		2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */; };
 		2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */; };
+		2F97FA261D142D1C00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA251D142D1C00C3708E /* HealthKit.framework */; };
+		2F97FA281D142D2D00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA271D142D2D00C3708E /* HealthKit.framework */; };
 		2FA376A21D09510E00FA208C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A11D09510E00FA208C /* AppDelegate.swift */; };
 		2FA376A41D09510E00FA208C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A31D09510E00FA208C /* ViewController.swift */; };
 		2FA376A71D09510E00FA208C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA376A51D09510E00FA208C /* Main.storyboard */; };
@@ -80,6 +82,8 @@
 		2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInfoRowController.swift; sourceTree = "<group>"; };
 		2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTimeWarper.swift; sourceTree = "<group>"; };
+		2F97FA251D142D1C00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		2F97FA271D142D2D00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2FA3769E1D09510E00FA208C /* bioswp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bioswp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA376A11D09510E00FA208C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA376A31D09510E00FA208C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F97FA281D142D2D00C3708E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F97FA261D142D1C00C3708E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +127,8 @@
 		2FA376951D09510E00FA208C = {
 			isa = PBXGroup;
 			children = (
+				2F97FA271D142D2D00C3708E /* HealthKit.framework */,
+				2F97FA251D142D1C00C3708E /* HealthKit.framework */,
 				2FA376A01D09510E00FA208C /* bioswp */,
 				2FA376B41D09510E00FA208C /* bioswp WatchKit App */,
 				2FA376C31D09510E00FA208C /* bioswp WatchKit Extension */,
@@ -264,6 +272,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 						};
 					};
 					2FA376AF1D09510E00FA208C = {
@@ -280,6 +291,9 @@
 						DevelopmentTeam = 4F37KKK3JK;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
 								enabled = 1;
 							};
 						};

@@ -65,7 +65,7 @@
         <!--Heart Rate-->
         <scene sceneID="Ao8-K1-mr0">
             <objects>
-                <controller id="hKB-uk-fuZ" userLabel="Heart Rate" customClass="HeartRateInterfaceController" customModule="bioswp_WatchKit_Extension">
+                <controller identifier="heartRateScene" title="Heart Rate" id="hKB-uk-fuZ" userLabel="Heart Rate" customClass="HeartRateInterfaceController" customModule="bioswp_WatchKit_Extension">
                     <items>
                         <label width="88" alignment="center" text="Instruction" textAlignment="center" numberOfLines="2" id="q9J-GG-r07">
                             <fontDescription key="font" style="UICTFontTextStyleCallout"/>

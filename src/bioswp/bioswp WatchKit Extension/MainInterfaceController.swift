@@ -28,7 +28,13 @@ class MainInterfaceController: WKInterfaceController {
     }
     
     @IBAction func enrollButtonActivated() {
-        rec(authRecFileName)
+        let context = HeartRateInterfaceContext()
+        context.instruction = "Enrolling Heart"
+        context.dataStorePath = "Sample_\(NSDate().description).data"
+        context.sampleDuration = 10.0
+        context.completionClosure = {() -> Void in print("Done")}
+        self.pushControllerWithName("heartRateScene", context: context)
+        //rec(authRecFileName)
     }
     
     @IBAction func playButtonActivated() {

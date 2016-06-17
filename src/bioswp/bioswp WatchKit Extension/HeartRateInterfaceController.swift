@@ -10,6 +10,13 @@ import WatchKit
 import Foundation
 import HealthKit
 
+class HeartRateInterfaceContext : AnyObject {
+    var instruction: String?
+    var dataStorePath : String?
+    var sampleDuration : Double?
+    var completionClosure : () -> Void = {() -> Void in return}
+}
+
 class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     
     // MARK: Outlets
@@ -27,19 +34,17 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     private var endDate : NSDate?
     
     // MARK: Public Variables
-    var instruction: String?
-    var dataStorePath : String?
-    var sampleDuration : Double?
-    var completionClosure : () -> () = {() -> Void in return}
-    
+    var localContext : HeartRateInterfaceContext?
+   
     // MARK: Overrides
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        localContext = context as? HeartRateInterfaceContext
     }
 
     override func willActivate() {
         super.willActivate()
-        instructionLabel.setText(instruction)
+        instructionLabel.setText(localContext?.instruction)
         
         guard HKHealthStore.isHealthDataAvailable() else {
             displayError()
@@ -55,11 +60,11 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypes) { (success, error) ->  Void in
             if !success { self.displayError() }
         }
-        if let duration = sampleDuration {
+        if let duration = localContext?.sampleDuration {
             startWorkout()
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                 self.stopWorkout()
-                self.completionClosure()
+                self.localContext?.completionClosure()
                 self.popToRootController()
             }
         }
@@ -109,7 +114,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         if let query = getHeartRateStreamingQuery(date) {
             endDate = date
             healthStore.stopQuery(query)
-            if let path = dataStorePath {
+            if let path = localContext?.dataStorePath {
                 storeHeartRateData(startDate!, endDate: endDate!, location: path)
             }
         } else {
@@ -189,6 +194,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         dispatch_async(dispatch_get_main_queue()) {
             guard let sample = heartRateSamples.first else { return }
             let value = sample.quantity.doubleValueForUnit(self.hearRateUnit)
+            self.heartRateLabel.setText("\(value)")
             // TODO: Update some GUI with value
         }
     }
