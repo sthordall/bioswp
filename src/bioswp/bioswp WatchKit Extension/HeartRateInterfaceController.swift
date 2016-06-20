@@ -195,11 +195,11 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
                                                    {(query, sampleObjs, deletedObjs, newAnchor, error) -> Void in
                                                     guard let newAnchor = newAnchor else { return }
                                                     self.anchor = newAnchor
-                                                    self.updateHeartRate(sampleObjs)
+                                                    //self.updateHeartRate(sampleObjs)
                                                    }
         heartRateQuery.updateHandler = {(query, sampleObjs, deletedObjs, newAnchor, error) -> Void in
             self.anchor = newAnchor!
-            self.updateHeartRate(sampleObjs)
+//            self.updateHeartRate(sampleObjs)
         }
         return heartRateQuery
     }
