@@ -18,7 +18,8 @@ class HeartRateInterfaceContext : AnyObject {
     var completionClosure : () -> Void = {() -> Void in return}
 }
 
-class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSessionDelegate {
+
+class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     
     // MARK: Outlets
     @IBOutlet var instructionLabel: WKInterfaceLabel!
@@ -50,11 +51,6 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         super.awakeWithContext(context)
         print("Awoke with context")
         localContext = context as? HeartRateInterfaceContext
-    }
-
-    override func willActivate() {
-        super.willActivate()
-        print("Will Activate")
         instructionLabel.setText(localContext?.instruction)
         
         guard HKHealthStore.isHealthDataAvailable() else {
@@ -78,6 +74,12 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
                 self.localContext?.completionClosure()
             }
         }
+    }
+
+    override func willActivate() {
+        super.willActivate()
+        print("Will Activate")
+
     }
 
     override func didDeactivate() {
@@ -127,7 +129,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
             if let path = localContext?.dataStorePath {
                 storeHeartRateData(startDate!, endDate: endDate!, location: path)
             }
-            self.popToRootController()
+//            self.popController()
         } else {
             displayError("Could not get heart rate streaming query")
         }
@@ -212,3 +214,5 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         }
     }
 }
+
+extension HeartRateInterfaceController : WCSessionDelegate {}

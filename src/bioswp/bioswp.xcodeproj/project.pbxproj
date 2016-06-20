@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F0B69381D09964400C11124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F0B69371D09964400C11124 /* Assets.xcassets */; };
-		2F0B693A1D09A24400C11124 /* MoveInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0B69391D09A24400C11124 /* MoveInterfaceController.swift */; };
-		2F97FA1E1D09C39700C3708E /* MoveInfoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA1D1D09C39700C3708E /* MoveInfoInterfaceController.swift */; };
-		2F97FA201D09C68C00C3708E /* MoveInfoRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */; };
 		2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */; };
 		2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */; };
 		2F97FA261D142D1C00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA251D142D1C00C3708E /* HealthKit.framework */; };
@@ -26,8 +23,6 @@
 		2FA376C01D09510E00FA208C /* bioswp WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2FA376BF1D09510E00FA208C /* bioswp WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FA376C71D09510E00FA208C /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376C61D09510E00FA208C /* MainInterfaceController.swift */; };
 		2FA376C91D09510E00FA208C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */; };
-		2FA376CB1D09510E00FA208C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376CA1D09510E00FA208C /* NotificationController.swift */; };
-		2FA376CD1D09510E00FA208C /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376CC1D09510E00FA208C /* GlanceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,9 +72,6 @@
 		2F0B69341D097F6500C11124 /* bioswp WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "bioswp WatchKit App.entitlements"; sourceTree = "<group>"; };
 		2F0B69351D097F7200C11124 /* bioswp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = bioswp.entitlements; sourceTree = "<group>"; };
 		2F0B69371D09964400C11124 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2F0B69391D09A24400C11124 /* MoveInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInterfaceController.swift; sourceTree = "<group>"; };
-		2F97FA1D1D09C39700C3708E /* MoveInfoInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInfoInterfaceController.swift; sourceTree = "<group>"; };
-		2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveInfoRowController.swift; sourceTree = "<group>"; };
 		2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTimeWarper.swift; sourceTree = "<group>"; };
 		2F97FA251D142D1C00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -96,11 +88,8 @@
 		2FA376B81D09510E00FA208C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FA376BA1D09510E00FA208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FA376BF1D09510E00FA208C /* bioswp WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "bioswp WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FA376C51D09510E00FA208C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		2FA376C61D09510E00FA208C /* MainInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		2FA376CA1D09510E00FA208C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		2FA376CC1D09510E00FA208C /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		2FA376D01D09510F00FA208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,27 +165,13 @@
 			children = (
 				2F0B69331D097F2B00C11124 /* bioswp WatchKit Extension.entitlements */,
 				2FA376C61D09510E00FA208C /* MainInterfaceController.swift */,
-				2F0B69391D09A24400C11124 /* MoveInterfaceController.swift */,
-				2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */,
-				2FA376CA1D09510E00FA208C /* NotificationController.swift */,
-				2FA376CC1D09510E00FA208C /* GlanceController.swift */,
-				2F97FA1D1D09C39700C3708E /* MoveInfoInterfaceController.swift */,
-				2F0B69371D09964400C11124 /* Assets.xcassets */,
-				2FA376D01D09510F00FA208C /* Info.plist */,
-				2FA376C41D09510E00FA208C /* Supporting Files */,
-				2F97FA1F1D09C68C00C3708E /* MoveInfoRowController.swift */,
 				2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */,
 				2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */,
+				2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */,
+				2F0B69371D09964400C11124 /* Assets.xcassets */,
+				2FA376D01D09510F00FA208C /* Info.plist */,
 			);
 			path = "bioswp WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		2FA376C41D09510E00FA208C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2FA376C51D09510E00FA208C /* PushNotificationPayload.apns */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,14 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FA376CB1D09510E00FA208C /* NotificationController.swift in Sources */,
-				2F0B693A1D09A24400C11124 /* MoveInterfaceController.swift in Sources */,
 				2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */,
-				2F97FA1E1D09C39700C3708E /* MoveInfoInterfaceController.swift in Sources */,
 				2FA376C91D09510E00FA208C /* ExtensionDelegate.swift in Sources */,
-				2F97FA201D09C68C00C3708E /* MoveInfoRowController.swift in Sources */,
 				2FA376C71D09510E00FA208C /* MainInterfaceController.swift in Sources */,
-				2FA376CD1D09510E00FA208C /* GlanceController.swift in Sources */,
 				2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
