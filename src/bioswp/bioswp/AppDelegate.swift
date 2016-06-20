@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import WatchConnectivity
+import HealthKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
-
+    let healthStore = HKHealthStore()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -41,6 +43,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // authorization from watch
+    func applicationShouldRequestHealthAuthorization(application: UIApplication) {
+        
+        self.healthStore.handleAuthorizationForExtensionWithCompletion { success, error in
+            
+        }
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        do {
+           if let heartRateArray = message["heartRateArray"] as? Array<Double> {
+                let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
+                if let location = message["location"] as? String {
+                    if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+                        try heartRateArray.description.writeToURL(pathUrl, atomically: true, encoding: NSASCIIStringEncoding)
+                        replyHandler([:])
+                    } else { print("Could not create PathUrl") }
+                } else { print("No location in dictionary") }
+            } else { print("No heartArray in dictionary") }
+        } catch { print("Write to/Creation of URL threw exception") }
+    }
 
 }
 

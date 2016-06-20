@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import HealthKit
+import WatchConnectivity
 
 class HeartRateInterfaceContext : AnyObject {
     var instruction: String?
@@ -17,7 +18,7 @@ class HeartRateInterfaceContext : AnyObject {
     var completionClosure : () -> Void = {() -> Void in return}
 }
 
-class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
+class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSessionDelegate {
     
     // MARK: Outlets
     @IBOutlet var instructionLabel: WKInterfaceLabel!
@@ -35,37 +36,46 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     
     // MARK: Public Variables
     var localContext : HeartRateInterfaceContext?
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
    
     // MARK: Overrides
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        print("Awoke with context")
         localContext = context as? HeartRateInterfaceContext
     }
 
     override func willActivate() {
         super.willActivate()
+        print("Will Activate")
         instructionLabel.setText(localContext?.instruction)
         
         guard HKHealthStore.isHealthDataAvailable() else {
-            displayError()
+            displayError("Health data not available")
             return
         }
         
         guard let quantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate) else {
-            displayError()
+            displayError("Cannot get quantitytype")
             return
         }
         
         let dataTypes = Set(arrayLiteral: quantityType)
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypes) { (success, error) ->  Void in
-            if !success { self.displayError() }
+            if !success { self.displayError("Not authorized to share types") }
         }
         if let duration = localContext?.sampleDuration {
             startWorkout()
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                 self.stopWorkout()
                 self.localContext?.completionClosure()
-                self.popToRootController()
             }
         }
     }
@@ -96,7 +106,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     }
     
     func workoutSession(workoutSession: HKWorkoutSession, didFailWithError error: NSError) {
-        displayError(error.localizedDescription)
+        displayError("Workout session failed with error: \(error.localizedDescription)")
     }
     
     func workoutDidStart(date: NSDate) {
@@ -105,7 +115,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
             startDate = date
             healthStore.executeQuery(query)
         } else {
-            displayError()
+            displayError("Could not get heart rate streaming query")
         }
     }
     
@@ -117,8 +127,9 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
             if let path = localContext?.dataStorePath {
                 storeHeartRateData(startDate!, endDate: endDate!, location: path)
             }
+            self.popToRootController()
         } else {
-            displayError()
+            displayError("Could not get heart rate streaming query")
         }
     }
     
@@ -131,9 +142,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     }
     
     func stopWorkout() {
-        if let workout = self.workoutSession {
-            healthStore.endWorkoutSession(workout)
-        }
+        healthStore.endWorkoutSession(self.workoutSession!)
         self.workoutActive = false
     }
     
@@ -144,27 +153,31 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
             .requestAuthorizationToShareTypes(nil, readTypes: [heartRateType], completion: {(success, error) -> Void in
                 let sortByTime = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
                 let datePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: HKQueryOptions.None)
-                let query = HKSampleQuery(sampleType: heartRateType, predicate: datePredicate, limit: 1000, sortDescriptors: [sortByTime], resultsHandler: {(query, results, error) in
-                    guard let results = results else { return }
-                    for sample in results {
-                        let quantity = (sample as! HKQuantitySample).quantity
-                        let heartRateUnit = HKUnit(fromString: "count/min")
-                        heartRateArray.append(quantity.doubleValueForUnit(heartRateUnit))
-                    }
-                    do {
-                        let documentsDir = try NSFileManager.defaultManager()
-                                                            .URLForDirectory(.DocumentDirectory,
-                                                                             inDomain: .UserDomainMask,
-                                                                             appropriateForURL: nil,
-                                                                             create: true)
-                        
-                        try heartRateArray.description.writeToURL(NSURL(string: location, relativeToURL: documentsDir)!,
-                                                                  atomically: true,
-                                                                  encoding: NSASCIIStringEncoding)
-                    } catch {
-                       self.displayError("Could not save data to \(location)")
-                    }
-                })
+                let query = HKSampleQuery(sampleType: heartRateType,
+                                            predicate: datePredicate,
+                                            limit: 1000,
+                                            sortDescriptors: [sortByTime],
+                                            resultsHandler: {(query, results, error) in
+                                                guard let results = results else { return }
+                                                for sample in results {
+                                                    let quantity = (sample as! HKQuantitySample).quantity
+                                                    let heartRateUnit = HKUnit(fromString: "count/min")
+                                                    heartRateArray.append(quantity.doubleValueForUnit(heartRateUnit))
+                                                }
+                                                if WCSession.isSupported() {
+                                                    self.session = WCSession.defaultSession()
+                                                    self.session!.sendMessage(
+                                                        ["heartRateArray": heartRateArray, "location": location],
+                                                        replyHandler: {(response) -> Void in
+                                                            print("Succesful heart-rate msg to phone")
+                                                        },
+                                                        errorHandler: {(error) -> Void in
+                                                            print("Unsuccesful heart-rate msg to phone")
+                                                        })
+                                                } else {
+                                                    print("WCSession not supported")
+                                                }
+                                            })
                 self.healthStore.executeQuery(query)
         })
     }
