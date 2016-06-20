@@ -22,7 +22,7 @@ class MainInterfaceController: WKInterfaceController {
     @IBAction func enrollButtonActivated() {
         let context = HeartRateInterfaceContext()
         context.instruction = "Enrolling Heart"
-        context.dataStorePath = "Sample_\(rand()).data"
+        context.dataStorePath = "Sample_\(NSTimeIntervalSince1970).data"
         context.sampleDuration = 10.0
         context.completionClosure = {() -> Void in print("Done")}
         self.pushControllerWithName("heartRateScene", context: context)

@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                 let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
                 if let location = message["location"] as? String {
                     if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+                        print(heartRateArray.description)
                         try heartRateArray.description.writeToURL(pathUrl, atomically: true, encoding: NSASCIIStringEncoding)
                         replyHandler([:])
                     } else { print("Could not create PathUrl") }
