@@ -61,7 +61,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             
         }
     }
-    
+    func session(session: WCSession, didReceiveFile file: WCSessionFile) {
+        do {
+            let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
+            guard let location = file.metadata?["location"] as? String else {return}
+            let fileManager = NSFileManager.defaultManager()
+            if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+               try fileManager.moveItemAtURL(file.fileURL, toURL: pathUrl)
+            }
+        } catch { print("Write to/Creation of URL threw exception") }
+        
+    }
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         do {
             let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
@@ -91,8 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                     }
                 }
             }
-            
-            
+           
         } catch { print("Write to/Creation of URL threw exception") }
     }
 

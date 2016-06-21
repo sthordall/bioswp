@@ -62,18 +62,7 @@ class VoiceInterfaceController : WKInterfaceController, WCSessionDelegate {
     func storeVoiceData (location: String, dataUrl: NSURL) {
         if WCSession.isSupported() {
             self.session = WCSession.defaultSession()
-            let message = ["location": location, "dataUrl": dataUrl]
-            self.session!.sendMessage(message,
-                                      replyHandler: {(response) -> Void in
-                                        print("Succesful voice msg to phone")
-                                        self.localContext?.completionClosure()
-                                        self.popController()
-                                      },
-                                      errorHandler: {(error) -> Void in
-                                        print("Un-succesful voice msg to phone")
-                                        self.localContext?.completionClosure()
-                                        self.popController()
-                                      })
+            self.session!.transferFile(dataUrl, metadata: ["location": location])
         }
     }
 }
