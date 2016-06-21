@@ -63,6 +63,9 @@
                     </items>
                     <connections>
                         <outlet property="instructionLabel" destination="hWK-K2-Ilq" id="s3u-bx-wcE"/>
+                        <outlet property="xLabel" destination="KJj-qa-cVK" id="Wy9-g6-HO0"/>
+                        <outlet property="yLabel" destination="gWE-hr-qEJ" id="8hf-2x-6eI"/>
+                        <outlet property="zLabel" destination="HG6-C2-Y6e" id="fbr-Ar-78A"/>
                     </connections>
                 </controller>
             </objects>
