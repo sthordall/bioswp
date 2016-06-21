@@ -7,7 +7,7 @@ on their usefulness for biometric identification. Finally the analysis
 should result in a selection of sensors found appropriate for the prototype.
 
 \subsection{Sensors}
-The \textit{Apple Watch} includes a multitude of sensors \cite{watchspecs}, 
+The \textit{Apple Watch} includes a multitude of sensors \cite{Ap16}, 
 which are used mainly for usability, activity, fitness and health tracking, but
 they are also used for some security functionalities, such as using the heart 
 rate sensor, to ensure the owner who unlocked the watch, has not removed the 
@@ -21,9 +21,10 @@ flowing in said veins. This allows the watch to detect the wearers heart rate
 \cite{watchheartrate}.
 The quality of measurements rely on the wearers fit of the watch, but when
 fitted correctly heart rate data is provided through Apple's \textit{HealthKit}
-framework. The heart rate data can be fetched as a stream through an instance of
-\texttt{HKHealthStore}, and can both be fetched as a calculated heart rate, and
-as raw sensor data \cite{healthkitfw}.
+framework. The heart rate data can be fetched through an instance of
+\texttt{HKHealthStore}, and can both be fetched as a stream through a
+\texttt{WorkoutSession} and retroactively through queries to the
+\texttt{HKHealthStore} \cite{healthkitfw}.
 Heart rate data for biometric identification has been explored by other vendors
 than Apple \cite{nymiwhitepaper}, but this has been done with different sensors
 and raw sensor data. It has been found possible with raw sensor data to identify
@@ -99,32 +100,59 @@ possible, in order to extract continuous data.
 % TODO: Include auto screen turn-off, continuous background services, dependency
 % on phone, platform independence, limited processing power
 
-\subsection{Possible systems}
+\subsection{System Proposals}
 % TODO: Mention possible setups, from findings in analysis
 % TODO: Argument FOR the selected prototype, mention why the others are not
 % chosen
-With the sensors and limitations taken into account, two possible systems seems
-probable. Common to both systems are the users active participation, and the
-watching being still. This is to overcome the limitations of automatic screen
-on/off and not being able to run background services.
+With the sensors and limitations taken into account, three systems will be
+proposed. These systems will be evaluated on their possibility of
+implementation, and their usefulness.
+The proposed systems will form the basis for the prototype.
 
 \subsubsection{Voice Recognition}
 This approach could utilize the built-in microphone to record and extract
 features from the subjects voice. The detection could rely both on the words
-being said and not. Voice recognition in general has seen a growth in use, due
-to the growing popularity and efficiency of modern machine learning
-technologies \cite{6296526}. This approach would therefore be both possible and
-convenient for users, already comfortable with talking to their smart devices. 
+being said and not. Voice recognition in general has seen an immense
+advancements, due to the growing popularity and efficiency of modern machine 
+learning technologies \cite{6296526}. 
+This approach would therefore be both possible and convenient for users, already 
+comfortable with talking to their smart devices. 
 The system would need to extract features of the subjects voice, not only said
 words. This is quite challenging and might also need machine learning techniques to
 perform adequately. Due to the limited processing power of the Apple Watch, and
 the requirements from machine learning, the recorded sound samples might need to
 be sent to a central server for processing. This could result in privacy issues,
-as biometric authentication data is sent over the network.
+as biometric authentication data is sent over the network. It could also result
+in significant latency, worsening the user experience. 
 
 \subsubsection{Gait Recognition}
 %TODO: What would this require, how does it work etc.
+Using the accelerometer and gyroscope within the watch, the continuous movement
+data could be used to identify the individual wearing the watch, i.e. gait
+recognition. This approach could be very convenient, as it does not require any
+interaction from the wearer besides wearing it, making it very pervasive.
+The main problem with this, is the continuous measurements from the Apple Watch, and the
+limited processing power of the watch \cite{ferrero2015a}. Since the Apple Watch
+does not support background services on the watch, the continuous data retrieval
+might not be possible. Furthermore gait recognition from smartwatch movement
+data, has the potential of being a research project in itself. Research has been
+performed on how to achieve this with smartphones \cite{ferrero2015a}, but the 
+phone is normally located in pocket, whereas the watch is on the wrist, 
+resulting in different movement data. As with voice recognition, gait
+recognition requires machine learning techniques such as \textit{principal
+    component analysis} to identify patterns and characteristics in the data,
+    which would require the movement data to be sent to central servers, as the
+    Apple Watch is neither powerful or efficient enough to perform these kinds
+    of calculations \cite{dawson2008a}.
 
 \subsubsection{Photoplethysmography Recognition}
 %TODO: What would this require, how does it work etc.
-
+As mentioned the built-in heart rate sensor utilizes the technology
+\textit{photoplethysmography (PPG)} to detect the wearers heart rate. It is shown the
+raw data from sensors like these can be used for identification
+\cite{kavsaoglu2013a}. This approach like the others, require access to raw
+data, but does not require it continuously as with gait recognition.
+Unfortunately the recognition of subjects again requires advanced processing,
+limiting the viability of such an approach. Another problem is the access to raw
+PPG data from the watch. Apple only allows access to preprocessed data, i.e.\
+the calculated heart rate.

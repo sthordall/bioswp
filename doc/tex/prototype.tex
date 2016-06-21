@@ -2,21 +2,29 @@
 % TODO: How does the prototype handle sample quality?
 %           - Length of clips?
 %           - Performed in quiet environment?
+Due to the findings in the analysis section, the prototypes scope has been
+limited to data extraction from the different sensors in the watch. This means
+that no feature comparison will be performed. This was found to be a necessary
+compromise, as all the proposed systems requires advanced machine learning to
+function optimally. An implementation of the \textit{Dynamic Time Warp}
+algorithm has also been included, to test if any comparison algorithm is
+possible on a smart watch. Much of the code has been inspired by open source
+examples \cite{watchosheartratesamplerepo} \cite{healthkitheartrateexporter} 
+\cite{watchossampler}, found on the popular code repository site \textit{GitHub}.
+The main purpose of the prototype is therefore to sample the sensors, allowing
+for further analysis of the output.
 
-\cite{watchosheartratesamplerepo}
-\cite{healthkitheartrateexporter}
-\cite{watchossampler}
+The prototype should include data extraction from the three possible sensors,
+    i.e.\ the microphone, motion sensors and heart rate sensor. These should be
+easily sampled, and extracted from the device. 
 
-\subsection{Design}
-% TODO: What should the prototype include?
-%           - Which modalities?
-%           - Which features are extracted?
-%           - Ensuring sample quality
-% TODO: Mention third-party software used
-% TODO: Both WHAT the user says and WHO he is
+\subsection{User Interface}
 
-\subsubsection{Modality}
-% TODO: Chosen modality and suitability hereof
+\subsection{Microphone}
 
-\subsection{Implementation}
-\subsection{Evaluation}
+\subsection{Motion Sensors}
+
+\subsection{Heart Rate Sensor}
+
+\subsection{Dynamic Time Warp}
+

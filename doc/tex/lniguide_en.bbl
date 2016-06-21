@@ -1,20 +1,51 @@
-\begin{thebibliography}{Ap16}
+\begin{thebibliography}{Fe15b}
 
-\bibitem[Ap16]{watchspecs}
+\bibitem[Ap16]{Ap16}
 Apple Watch - Technical Specifications,
   https://support.apple.com/kb/SP735?locale=en\_US, Apple Inc., Fetched:
   12.06.2016.
+
+\bibitem[Br16]{healthkitheartrateexporter}
+BradLarson/HealthKitHeartRateExporter,
+  https://github.com/BradLarson/HealthKitHeartRateExporter, GitHub, Fetched:
+  16.06.2016.
 
 \bibitem[Co13]{coremotionfw}
 Core Motion Framework Reference,
   https://developer.apple.com/library/ios/documentation/CoreMotion/Reference/CoreMotion\_Reference/,
   Apple Inc., Fetched: 15.06.2016.
 
-\bibitem[Fe15]{7181946}
+\bibitem[co16]{watchosheartratesamplerepo}
+coolioxlr/watchOS-2-heartrate,
+  https://github.com/coolioxlr/watchOS-2-heartrate, GitHub, Fetched:
+  16.06.2016.
+
+\bibitem[Da08]{dawson2008a}
+Dawson, Mark~Ruane: Gait Recognition.
+\newblock 2008.
+
+\bibitem[Fe15a]{7181946}
 Ferrero, R.; Gandino, F.; Montrucchio, B.; Rebaudengo, M.; Velasco, A.;
   Benkhelifa, I.: On gait recognition with smartphone accelerometer.
 \newblock In: 2015 4th Mediterranean Conference on Embedded Computing (MECO).
 \newblock pp. 368--373, June 2015.
+
+\bibitem[Fe15b]{ferrero2015a}
+Ferrero, Renato; Gandino, Filippo; Montrucchio, Bartolomeo; Rebaudengo,
+  Maurizio; Velasco, Alejandro; Benkhelifa, Imane: On gait recognition with
+  smartphone accelerometer.
+\newblock pp. 368--373, 2015.
+
+\bibitem[Hi12]{6296526}
+Hinton, G.; Deng, L.; Yu, D.; Dahl, G.~E.; r.~Mohamed, A.; Jaitly, N.; Senior,
+  A.; Vanhoucke, V.; Nguyen, P.; Sainath, T.~N.; Kingsbury, B.: Deep Neural
+  Networks for Acoustic Modeling in Speech Recognition: The Shared Views of
+  Four Research Groups.
+\newblock IEEE Signal Processing Magazine, 29(6):82--97, Nov 2012.
+
+\bibitem[HK16]{workoutsession}
+HKWorkoutSession Class Reference,
+  https://developer.apple.com/library/watchos/documentation/HealthKit/Reference/HKWorkoutSession\_ClassReference/index.html.
 
 \bibitem[In15]{nymiwhitepaper}
 Inc., Nymi: HeartID White Paper.
@@ -25,6 +56,10 @@ Kavsaoglu, A.~Resit; Polat, Kemal; Bozkurt, M.~Recep; Muthusamy, Hariharan:
   Feature Extraction for Biometric Recognition with Photoplethysmography
   Signals.
 \newblock Signal Processing and Communications Applications Conference, 2013.
+
+\bibitem[sh16]{watchossampler}
+shu223/watchOS-2-Sampler, https://github.com/shu223/watchOS-2-Sampler, GitHub,
+  Fetched: 16.06.2016.
 
 \bibitem[Th16]{healthkitfw}
 The HealthKit Framework,
