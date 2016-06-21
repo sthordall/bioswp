@@ -64,16 +64,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         do {
-           if let heartRateArray = message["heartRateArray"] as? Array<Double> {
-                let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
-                if let location = message["location"] as? String {
-                    if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
-                        print(heartRateArray.description)
-                        try heartRateArray.description.writeToURL(pathUrl, atomically: true, encoding: NSASCIIStringEncoding)
-                        replyHandler([:])
-                    } else { print("Could not create PathUrl") }
-                } else { print("No location in dictionary") }
-            } else { print("No heartArray in dictionary") }
+            let documentsDir = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask,appropriateForURL: nil, create: true)
+            guard let location = message["location"] as? String else {return}
+            
+            if let heartRateArray = message["heartRateArray"] as? Array<Double> {
+                if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+                    try heartRateArray.description.writeToURL(pathUrl, atomically: true, encoding: NSASCIIStringEncoding)
+                    replyHandler([:])
+                }
+            }
+            
+            if let arrayX = message["accelerometerArrayX"] as? Array<Double> {
+                if let arrayY = message["accelerometerArrayY"] as? Array<Double> {
+                    if let arrayZ = message["accelerometerArrayZ"] as? Array<Double> {
+                        var combinedArray = Array<(Double,Double,Double)>()
+                        let num = min(arrayX.count, arrayY.count, arrayZ.count)
+                        var index = 0
+                        while index < num {
+                            combinedArray.append((arrayX[index], arrayY[index], arrayZ[index]))
+                            index += 1
+                        }
+                        if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+                            try combinedArray.description.writeToURL(pathUrl, atomically: true, encoding: NSASCIIStringEncoding)
+                            replyHandler([:])
+                        }
+                    }
+                }
+            }
+            
+            
         } catch { print("Write to/Creation of URL threw exception") }
     }
 
