@@ -16,11 +16,19 @@
                         <items>
                             <menuItem title="Heart Rate" icon="add" id="qe7-w9-Wa9" userLabel="Heart Rate">
                                 <connections>
-                                    <action selector="enrollButtonActivated" destination="AgC-eL-Hgc" id="1Ws-40-c8y"/>
+                                    <action selector="heartRateButtonTapped" destination="AgC-eL-Hgc" id="jO4-Ta-9vo"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Voice" icon="speaker" id="ioE-la-kCI" userLabel="Voice"/>
-                            <menuItem title="Movement" icon="maybe" id="gfU-Ub-DbH" userLabel="Movement"/>
+                            <menuItem title="Voice" icon="speaker" id="ioE-la-kCI" userLabel="Voice">
+                                <connections>
+                                    <action selector="voiceButtonTapped" destination="AgC-eL-Hgc" id="GL3-U0-a6f"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Movement" icon="maybe" id="gfU-Ub-DbH" userLabel="Movement">
+                                <connections>
+                                    <action selector="movementButtonTapped" destination="AgC-eL-Hgc" id="DmV-zE-68X"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </controller>
@@ -30,12 +38,14 @@
         <!--Voice-->
         <scene sceneID="yT8-wi-78d">
             <objects>
-                <controller identifier="Voice" title="Voice" id="0V5-ZD-S6o">
+                <controller identifier="voiceScene" title="Voice" id="0V5-ZD-S6o" customClass="VoiceInterfaceController" customModule="bioswp_WatchKit_Extension">
                     <items>
                         <label width="1" alignment="left" text="Label" textAlignment="center" id="WYw-Ja-CfQ" userLabel="Instruction"/>
                         <separator alignment="left" id="hvO-oJ-04g"/>
-                        <button width="1" alignment="left" title="Start" id="xDI-2O-rwK"/>
                     </items>
+                    <connections>
+                        <outlet property="instructionLabel" destination="WYw-Ja-CfQ" id="TKI-Gc-Kiz"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="842" y="670"/>
@@ -43,15 +53,17 @@
         <!--Movement-->
         <scene sceneID="yfz-EN-cOa">
             <objects>
-                <controller identifier="Movement" title="Movement" id="88Y-nQ-Mwb">
+                <controller identifier="movementScene" title="Movement" id="88Y-nQ-Mwb" customClass="MovementInterfaceController" customModule="bioswp_WatchKit_Extension">
                     <items>
                         <label width="1" alignment="left" text="Label" textAlignment="center" id="hWK-K2-Ilq" userLabel="Instruction"/>
                         <separator alignment="left" id="8lB-i3-FJf"/>
                         <label width="1" alignment="left" text="0" textAlignment="center" id="KJj-qa-cVK" userLabel="x"/>
                         <label width="1" alignment="left" text="0" textAlignment="center" id="gWE-hr-qEJ" userLabel="y"/>
                         <label width="1" alignment="left" text="0" textAlignment="center" id="HG6-C2-Y6e" userLabel="z"/>
-                        <button width="1" alignment="left" title="Start" id="pEX-BM-SK8"/>
                     </items>
+                    <connections>
+                        <outlet property="instructionLabel" destination="hWK-K2-Ilq" id="s3u-bx-wcE"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="842" y="982"/>
@@ -68,7 +80,6 @@
                         <label width="1" height="68" alignment="center" text="0" textAlignment="center" numberOfLines="2" id="zvJ-qO-7gH">
                             <fontDescription key="font" style="UICTFontTextStyleCallout"/>
                         </label>
-                        <button width="1" alignment="left" title="Start" id="VVu-zm-fIG"/>
                     </items>
                     <connections>
                         <outlet property="heartRateLabel" destination="zvJ-qO-7gH" id="xzd-kh-6hC"/>

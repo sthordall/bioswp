@@ -12,6 +12,9 @@
 		2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */; };
 		2F97FA261D142D1C00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA251D142D1C00C3708E /* HealthKit.framework */; };
 		2F97FA281D142D2D00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA271D142D2D00C3708E /* HealthKit.framework */; };
+		2F97FA2A1D19920200C3708E /* MovementInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA291D19920200C3708E /* MovementInterfaceController.swift */; };
+		2F97FA2C1D19924000C3708E /* VoiceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA2B1D19924000C3708E /* VoiceInterfaceController.swift */; };
+		2F97FA2E1D19933000C3708E /* DataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA2D1D19933000C3708E /* DataContext.swift */; };
 		2FA376A21D09510E00FA208C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A11D09510E00FA208C /* AppDelegate.swift */; };
 		2FA376A41D09510E00FA208C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA376A31D09510E00FA208C /* ViewController.swift */; };
 		2FA376A71D09510E00FA208C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA376A51D09510E00FA208C /* Main.storyboard */; };
@@ -76,6 +79,9 @@
 		2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTimeWarper.swift; sourceTree = "<group>"; };
 		2F97FA251D142D1C00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		2F97FA271D142D2D00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		2F97FA291D19920200C3708E /* MovementInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementInterfaceController.swift; sourceTree = "<group>"; };
+		2F97FA2B1D19924000C3708E /* VoiceInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceInterfaceController.swift; sourceTree = "<group>"; };
+		2F97FA2D1D19933000C3708E /* DataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataContext.swift; sourceTree = "<group>"; };
 		2FA3769E1D09510E00FA208C /* bioswp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bioswp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA376A11D09510E00FA208C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA376A31D09510E00FA208C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +171,10 @@
 			children = (
 				2F0B69331D097F2B00C11124 /* bioswp WatchKit Extension.entitlements */,
 				2FA376C61D09510E00FA208C /* MainInterfaceController.swift */,
+				2F97FA291D19920200C3708E /* MovementInterfaceController.swift */,
+				2F97FA2B1D19924000C3708E /* VoiceInterfaceController.swift */,
 				2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */,
+				2F97FA2D1D19933000C3708E /* DataContext.swift */,
 				2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */,
 				2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */,
 				2F0B69371D09964400C11124 /* Assets.xcassets */,
@@ -339,7 +348,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F97FA2E1D19933000C3708E /* DataContext.swift in Sources */,
+				2F97FA2A1D19920200C3708E /* MovementInterfaceController.swift in Sources */,
 				2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */,
+				2F97FA2C1D19924000C3708E /* VoiceInterfaceController.swift in Sources */,
 				2FA376C91D09510E00FA208C /* ExtensionDelegate.swift in Sources */,
 				2FA376C71D09510E00FA208C /* MainInterfaceController.swift in Sources */,
 				2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */,

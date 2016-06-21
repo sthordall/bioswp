@@ -19,15 +19,33 @@ class MainInterfaceController: WKInterfaceController {
     
     // MARK: Actions
     
-    @IBAction func enrollButtonActivated() {
+    @IBAction func movementButtonTapped() {
+        let context = MovementInterfaceContext()
+        context.instruction = "Sampling Movement"
+        context.dataStorePath = "Movement_sample_\(NSTimeIntervalSince1970).data"
+        context.sampleDuration = 10.0
+        context.completionClosure = {() -> Void in print("Done")}
+        self.pushControllerWithName("movementScene", context: context)
+    }
+    
+    @IBAction func voiceButtonTapped() {
+        let context = VoiceInterfaceContext()
+        context.instruction = "Sampling Voice"
+        context.dataStorePath = "Voice_sample_\(NSTimeIntervalSince1970).mp4"
+        context.sampleDuration = 10.0
+        context.completionClosure = {() -> Void in print("Done")}
+        self.pushControllerWithName("voiceScene", context: context)
+    }
+    
+    @IBAction func heartRateButtonTapped() {
         let context = HeartRateInterfaceContext()
-        context.instruction = "Enrolling Heart"
-        context.dataStorePath = "Sample_\(NSTimeIntervalSince1970).data"
+        context.instruction = "Sampling Heart"
+        context.dataStorePath = "HeartRate_sample_\(NSTimeIntervalSince1970).data"
         context.sampleDuration = 100.0
         context.completionClosure = {() -> Void in print("Done")}
         self.pushControllerWithName("heartRateScene", context: context)
-    }
-   
+     }
+  
     // MARK: Helpers
    
    

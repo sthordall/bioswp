@@ -11,13 +11,7 @@ import Foundation
 import HealthKit
 import WatchConnectivity
 
-class HeartRateInterfaceContext : AnyObject {
-    var instruction: String?
-    var dataStorePath : String?
-    var sampleDuration : Double?
-    var completionClosure : () -> Void = {() -> Void in return}
-}
-
+class HeartRateInterfaceContext : DataContext {}
 
 class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     
