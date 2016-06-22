@@ -70,7 +70,7 @@ main interface, passing contexts setting up the sampling.},basicstyle=\small]
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1.0\textwidth]{../media/bioswp_ui.pdf}
+\includegraphics[width=0.8\textwidth]{../media/bioswp_ui.pdf}
 \caption{Flow of the developed prototypes user interface. Start menu allows for
 data extraction from the three sensors and to run DTW on arrays with 1000
     entries.}
@@ -83,7 +83,7 @@ which is controlled by the \texttt{VoiceInterfaceController}.
 Here the recording interface is spawned to record the specified time. The
 recording can be performed in a variety of qualities and formats, and is spawned
 with the \texttt{WKInterfaceController} function
-\texttt{presentAudioControllerWithOutputURL}, see listing~\ref{lst:rec}. The format is
+\texttt{presentAudioCon}-\texttt{trollerWithOutputURL}, see listing~\ref{lst:rec}. The format is
 controlled by the file extension on the \texttt{NSURL} which the function saves
 the recording to, and the quality is defined in the \texttt{preset}. The
 different presets can be found in table~\ref{tbl:rec}.
@@ -150,10 +150,14 @@ hardware. This would allow for more complex algorithms on largers sets of data.
     algorithm, within the DynamicTimeWarpInterfaceController}]
 dispatch_async(queue) {
     let dtw = DynamicTimeWarper()
-    let testArr1 = (0...localContext.testSampleSize!).map {_ in drand48()}
-    let testArr2 = (0...localContext.testSampleSize!).map {_ in drand48()}
-    let distance = String(format: "%.2f", dtw.distance(testArr1, target: testArr2))
-    let deltaTime = String(format: "%.2f", abs(self.dtwStart!.timeIntervalSinceNow))
+    let testArr1 = 
+        (0...localContext.testSampleSize!).map {_ in drand48()}
+    let testArr2 = 
+        (0...localContext.testSampleSize!).map {_ in drand48()}
+    let distance = 
+        String(format: "%.2f", dtw.distance(testArr1, target: testArr2))
+    let deltaTime = 
+        String(format: "%.2f", abs(self.dtwStart!.timeIntervalSinceNow))
     self.resultLabel.setText("Time: \(deltaTime)s\n
                               Distance: \(distance)\n
                               Size: \(localContext.testSampleSize!)")
@@ -161,7 +165,7 @@ dispatch_async(queue) {
 \end{lstlisting}
 
 \begin{table}[!h]
-\caption{Measure time it takes to run DTW on different sized arrays.}
+\caption{Measured time it takes to run DTW on different sized arrays.}
 \label{tbl:rec}
 \centering
 \begin{tabular}{ |c|c|  }
@@ -177,4 +181,52 @@ Array Size  & Time in seconds\\
 \end{table}
 
 \subsection{Data transfer and storage}
+In order to extract the data from the watch, it is sent to the iPhone in a
+message. The iPhone ensures that the data is stored in the \textit{Documents}
+directory, so the data easily can be extracted. This process happens after each
+sampling from a sensor. The library \texttt{WatchConnectivity} handles transfers
+of messages and files through sessions. The session is initiated both on the
+watch, and on the phone. An example of usage on the watch can be found in 
+listing~\ref{lst:wcsessionsend} and the receiving example can be found in 
+listing~\ref{lst:wcsessionreceive}.
+After succesful transfer, the samples can be downloaded from the phone through
+iTunes.
+This approach could also be used if processing of the measured data should be
+performed on the phone instead.
 
+\begin{lstlisting}[label={lst:wcsessionsend},caption={Send heart rate data to the
+phone from the watch.}]
+self.session = WCSession.defaultSession()
+self.session!.sendMessage(
+    ["heartRateArray": heartRateArray, "location": location],
+    replyHandler: {(response) -> Void in
+        print("Succesful heart-rate msg to phone")
+    },
+    errorHandler: {(error) -> Void in
+        print("Unsuccesful heart-rate msg to phone")
+    })
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:wcsessionreceive},caption={Receiving heart rate
+data on phone, and storing it to the Documents folder.}]
+func session(session: WCSession, 
+             didReceiveMessage message: [String : AnyObject], 
+             replyHandler: ([String : AnyObject]) -> Void) {
+...
+    let documentsDir = try NSFileManager.defaultManager()
+                           .URLForDirectory(.DocumentDirectory, 
+                                            inDomain: .UserDomainMask,
+                                            appropriateForURL: nil, 
+                                            create: true)
+    guard let location = message["location"] as? String else {return}
+    if let heartRateArray = message["heartRateArray"] as? Array<Double> {
+        if let pathUrl = NSURL(string: location, relativeToURL: documentsDir) {
+            try heartRateArray.description
+                              .writeToURL(pathUrl, 
+                                          atomically: true, 
+                                          encoding: NSASCIIStringEncoding)
+            replyHandler([:])
+        }
+    }
+...
+\end{lstlisting}
