@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F0B69381D09964400C11124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F0B69371D09964400C11124 /* Assets.xcassets */; };
+		2F926B311D19D01B001F3AC5 /* DynamicTimeWarpInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F926B301D19D01B001F3AC5 /* DynamicTimeWarpInterfaceController.swift */; };
 		2F97FA221D12EB5300C3708E /* HeartRateInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */; };
 		2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */; };
 		2F97FA261D142D1C00C3708E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F97FA251D142D1C00C3708E /* HealthKit.framework */; };
@@ -75,6 +76,7 @@
 		2F0B69341D097F6500C11124 /* bioswp WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "bioswp WatchKit App.entitlements"; sourceTree = "<group>"; };
 		2F0B69351D097F7200C11124 /* bioswp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = bioswp.entitlements; sourceTree = "<group>"; };
 		2F0B69371D09964400C11124 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2F926B301D19D01B001F3AC5 /* DynamicTimeWarpInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTimeWarpInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateInterfaceController.swift; sourceTree = "<group>"; };
 		2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTimeWarper.swift; sourceTree = "<group>"; };
 		2F97FA251D142D1C00C3708E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -174,6 +176,7 @@
 				2F97FA291D19920200C3708E /* MovementInterfaceController.swift */,
 				2F97FA2B1D19924000C3708E /* VoiceInterfaceController.swift */,
 				2F97FA211D12EB5300C3708E /* HeartRateInterfaceController.swift */,
+				2F926B301D19D01B001F3AC5 /* DynamicTimeWarpInterfaceController.swift */,
 				2F97FA2D1D19933000C3708E /* DataContext.swift */,
 				2F97FA231D13EAB300C3708E /* DynamicTimeWarper.swift */,
 				2FA376C81D09510E00FA208C /* ExtensionDelegate.swift */,
@@ -354,6 +357,7 @@
 				2F97FA2C1D19924000C3708E /* VoiceInterfaceController.swift in Sources */,
 				2FA376C91D09510E00FA208C /* ExtensionDelegate.swift in Sources */,
 				2FA376C71D09510E00FA208C /* MainInterfaceController.swift in Sources */,
+				2F926B311D19D01B001F3AC5 /* DynamicTimeWarpInterfaceController.swift in Sources */,
 				2F97FA241D13EAB300C3708E /* DynamicTimeWarper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

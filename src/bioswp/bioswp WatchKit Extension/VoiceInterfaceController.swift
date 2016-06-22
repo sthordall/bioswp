@@ -46,6 +46,7 @@ class VoiceInterfaceController : WKInterfaceController, WCSessionDelegate {
                     print("error: \(error)\n")
                     if didSave {
                         self.storeVoiceData(toFile, dataUrl: recFileUrl)
+                        self.popController()
                     } else { self.popController() }
             })
         } else { self.popController() }

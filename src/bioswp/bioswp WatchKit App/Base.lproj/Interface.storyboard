@@ -10,27 +10,27 @@
             <objects>
                 <controller identifier="authenticateScene" title="Bio Auth" id="AgC-eL-Hgc" customClass="MainInterfaceController" customModule="bioswp_WatchKit_Extension">
                     <items>
-                        <button alignment="left" backgroundImage="Lock-icon" id="yOD-3O-i1s" userLabel="AuthButton"/>
+                        <button width="1" alignment="left" title="Heart Rate" id="3hh-rP-bUD" userLabel="Heart Rate">
+                            <connections>
+                                <action selector="heartRateButtonTapped" destination="AgC-eL-Hgc" id="vjO-bD-gdf"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Voice" id="cWq-FT-B7i" userLabel="Voice">
+                            <connections>
+                                <action selector="voiceButtonTapped" destination="AgC-eL-Hgc" id="Irs-A9-14V"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Movement" id="hKi-CF-9tN" userLabel="Movement">
+                            <connections>
+                                <action selector="movementButtonTapped" destination="AgC-eL-Hgc" id="xrD-uZ-jUX"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="DTW Test" id="VzX-i3-CGR" userLabel="DTW Test">
+                            <connections>
+                                <action selector="dtwTestButtonTapped" destination="AgC-eL-Hgc" id="StP-TT-ajn"/>
+                            </connections>
+                        </button>
                     </items>
-                    <menu key="menu" id="VLR-Kl-STJ">
-                        <items>
-                            <menuItem title="Heart Rate" icon="add" id="qe7-w9-Wa9" userLabel="Heart Rate">
-                                <connections>
-                                    <action selector="heartRateButtonTapped" destination="AgC-eL-Hgc" id="jO4-Ta-9vo"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Voice" icon="speaker" id="ioE-la-kCI" userLabel="Voice">
-                                <connections>
-                                    <action selector="voiceButtonTapped" destination="AgC-eL-Hgc" id="GL3-U0-a6f"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Movement" icon="maybe" id="gfU-Ub-DbH" userLabel="Movement">
-                                <connections>
-                                    <action selector="movementButtonTapped" destination="AgC-eL-Hgc" id="DmV-zE-68X"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                 </controller>
             </objects>
             <point key="canvasLocation" x="266" y="347"/>
@@ -49,6 +49,23 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="842" y="670"/>
+        </scene>
+        <!--DTW-->
+        <scene sceneID="XVA-tK-cE3">
+            <objects>
+                <controller identifier="dtwScene" title="DTW" id="EeU-kf-ORH" customClass="DynamicTimeWarpInterfaceController" customModule="bioswp_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="Label" textAlignment="center" id="eUf-iU-LYZ" userLabel="Instruction"/>
+                        <separator alignment="left" id="hZA-7U-Qob"/>
+                        <label width="1" height="1" alignment="left" text="Label" textAlignment="center" numberOfLines="5" id="d3Z-oX-oJr" userLabel="Result"/>
+                    </items>
+                    <connections>
+                        <outlet property="instructionLabel" destination="eUf-iU-LYZ" id="wwn-Rl-Mop"/>
+                        <outlet property="resultLabel" destination="d3Z-oX-oJr" id="eWD-Qm-UFI"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="586" y="977"/>
         </scene>
         <!--Movement-->
         <scene sceneID="yfz-EN-cOa">
