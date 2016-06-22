@@ -280,7 +280,7 @@
 
 
 % bibliography
-\iflanguage{english}{\bibliographystyle{lni}}{\bibliographystyle{lnig}}
+\iflanguage{english}{\bibliographystyle{acm}}{\bibliographystyle{lnig}}
 %\renewcommand{\figurename}{Fig.}
 \renewenvironment{thebibliography}[1]
      {%\def\refname{Literaturverzeichnis}

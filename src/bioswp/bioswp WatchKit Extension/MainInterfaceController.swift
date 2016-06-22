@@ -45,6 +45,7 @@ class MainInterfaceController: WKInterfaceController {
         context.completionClosure = {() -> Void in print("Done")}
         self.pushControllerWithName("heartRateScene", context: context)
      }
+    
     @IBAction func dtwTestButtonTapped() {
         let context = DynamicTimeWarpInterfaceContext()
         context.instruction = "Testing DTW"

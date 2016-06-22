@@ -1,0 +1,84 @@
+\begin{thebibliography}{10}
+
+\bibitem{coremotionfw}
+Core motion framework reference, 2013.
+\newblock https://developer.apple.com/library/ios/documentation/CoreMotion
+  /Reference/CoreMotion\_Reference/, Apple Inc., Fetched: 15.06.2016.
+
+\bibitem{Ap16}
+Apple watch - technical specifications, 2016.
+\newblock https://support.apple.com/kb/SP735?locale=en\_US, Apple Inc.,
+  Fetched: 12.06.2016.
+
+\bibitem{healthkitheartrateexporter}
+Bradlarson/healthkitheartrateexporter, 2016.
+\newblock https://github.com/BradLarson/HealthKitHeartRateExporter, GitHub,
+  Fetched: 16.06.2016.
+
+\bibitem{watchosheartratesamplerepo}
+coolioxlr/watchos-2-heartrate, 2016.
+\newblock https://github.com/coolioxlr/watchOS-2-heartrate, GitHub, Fetched:
+  16.06.2016.
+
+\bibitem{healthkitfw}
+The healthkit framework, 2016.
+\newblock https://developer.apple.com/library/ios/documentation
+  /HealthKit/Reference/HealthKit\_Framework/, Apple Inc., Fetched: 15.06.2016.
+
+\bibitem{workoutsession}
+Hkworkoutsession class reference, 2016.
+\newblock https://developer.apple.com/library/watchos/documentation/HealthKit
+  /Reference/HKWorkoutSession\_ClassReference/index.html.
+
+\bibitem{watchossampler}
+shu223/watchos-2-sampler, 2016.
+\newblock https://github.com/shu223/watchOS-2-Sampler, GitHub, Fetched:
+  16.06.2016.
+
+\bibitem{watchheartrate}
+Your heart rate. what it means, and where on apple watch you’ll find it.,
+  2016.
+\newblock https://support.apple.com/en\-us/HT204666, Apple Inc., Fetched:
+  13.06.2016.
+
+\bibitem{berndt1994using}
+{\sc Berndt, D.~J., and Clifford, J.}
+\newblock Using dynamic time warping to find patterns in time series.
+\newblock In {\em KDD workshop\/} (1994), vol.~10, Seattle, WA, pp.~359--370.
+
+\bibitem{dawson2008a}
+{\sc Dawson, M.~R.}
+\newblock Gait recognition.
+
+\bibitem{7181946}
+{\sc Ferrero, R., Gandino, F., Montrucchio, B., Rebaudengo, M., Velasco, A.,
+  and Benkhelifa, I.}
+\newblock On gait recognition with smartphone accelerometer.
+\newblock In {\em 2015 4th Mediterranean Conference on Embedded Computing
+  (MECO)\/} (June 2015), pp.~368--373.
+
+\bibitem{ferrero2015a}
+{\sc Ferrero, R., Gandino, F., Montrucchio, B., Rebaudengo, M., Velasco, A.,
+  and Benkhelifa, I.}
+\newblock On gait recognition with smartphone accelerometer.
+\newblock 368--373.
+
+\bibitem{6296526}
+{\sc Hinton, G., Deng, L., Yu, D., Dahl, G.~E., r.~Mohamed, A., Jaitly, N.,
+  Senior, A., Vanhoucke, V., Nguyen, P., Sainath, T.~N., and Kingsbury, B.}
+\newblock Deep neural networks for acoustic modeling in speech recognition: The
+  shared views of four research groups.
+\newblock {\em IEEE Signal Processing Magazine 29}, 6 (Nov 2012), 82--97.
+
+\bibitem{nymiwhitepaper}
+{\sc Inc., N.}
+\newblock Heartid white paper.
+
+\bibitem{kavsaoglu2013a}
+{\sc Kavsaoglu, A.~R., Polat, K., Bozkurt, M.~R., and Muthusamy, H.}
+\newblock Feature extraction for biometric recognition with
+  photoplethysmography signals.
+\newblock {\em Signal Processing and Communications Applications Conference\/}
+  (2013).
+
+\end{thebibliography}
