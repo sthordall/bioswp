@@ -57,7 +57,7 @@ main interface, passing contexts setting up the sampling.},basicstyle=\small]
     context.sampleDuration = 100.0
     context.completionClosure = {() -> Void in print("Done")}
     self.pushControllerWithName("heartRateScene", context: context)
- }
+}
 
 @IBAction func dtwTestButtonTapped() {
     let context = DynamicTimeWarpInterfaceContext()
@@ -124,12 +124,65 @@ NarrowBandSpeach   & 8 kHz       & LPCM 128 kbps or AAC 24 kbps \\
 \end{table}
 
 \subsection{Accelerometer}
+The accelerometer is accessed through the \texttt{CoreMotion} framework, which
+provides a \texttt{CMMotionManager} one can attach sensor handlers to. Through
+the manager it is possible to check if the accelerometer is available, set its 
+update interval and attach a handler of the class
+\texttt{CMAccelerometerHandler}. The handler receives updates of the defined
+interval which, in the prototype, is saved to arrays for later storage. See
+listing~\ref{lst:acc} for an example of how the accelerometer is accessed in the
+prototype.
+On the iPhone this is also the approach to retrieving data from the gyroscope,
+but the watch returns \texttt{false} on the managers function
+\texttt{gyroActive}. 
 
+\begin{lstlisting}[label={lst:acc},caption={Usage of accelerometer in prototype.
+The accelerometerHandler is attached to the motionManager in order to receive
+updates on the set interval of 0.1.},basicstyle=\small]
+motionManager.accelerometerUpdateInterval = 0.1
+if motionManager.accelerometerAvailable {
+    let accelerometerHandler:CMAccelerometerHandler = {
+        (data: CMAccelerometerData?, error:NSError?) -> Void in
+        if let data = data {
+            self.xLabel.setText(String(format: "%.2f", data.acceleration.x))
+            self.yLabel.setText(String(format: "%.2f", data.acceleration.y))
+            self.zLabel.setText(String(format: "%.2f", data.acceleration.z))
+            self.measuredDataX.append(data.acceleration.x)
+            self.measuredDataY.append(data.acceleration.y)
+            self.measuredDataZ.append(data.acceleration.z)
+        }
+        if let error = error {
+            print(error.localizedDescription)
+        }
+        
+    }
+    if let duration = localContext?.sampleDuration {
+
+        motionManager.startAccelerometerUpdatesToQueue(
+            NSOperationQueue.currentQueue()!, 
+            withHandler: accelerometerHandler)
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 
+                                     Int64(duration * Double(NSEC_PER_SEC))), 
+                                     dispatch_get_main_queue()) {
+
+            self.motionManager.stopAccelerometerUpdates()
+            if let location = self.localContext?.dataStorePath {
+                self.storeAccelerometerData(location,
+                                            dataX: self.measuredDataX,
+                                            dataY: self.measuredDataY,
+                                            dataZ: self.measuredDataZ)
+            }
+        }
+     }
+}
+\end{lstlisting}
 
 \subsection{Heart Rate Sensor}
 
+
 \subsection{Dynamic Time Warp}
-The implementation of DTW is only included to showcase the computation power of
+The implementation of DTW is only included to showcase the computational power of
 the \textit{Apple Watch}, and to evaluate if it is viable to run such a rather
 heavy algorithm on the watch.
 The DTW algorithm has beenMotion Sensors implemented in the class
@@ -147,7 +200,7 @@ hardware. This would allow for more complex algorithms on largers sets of data.
 
 
 \begin{lstlisting}[label={lst:dtw},caption={Testing of the implemented DTW
-    algorithm, within the DynamicTimeWarpInterfaceController}]
+    algorithm, within the DynamicTimeWarpInterfaceController},basicstyle=\small]
 dispatch_async(queue) {
     let dtw = DynamicTimeWarper()
     let testArr1 = 
@@ -195,7 +248,7 @@ This approach could also be used if processing of the measured data should be
 performed on the phone instead.
 
 \begin{lstlisting}[label={lst:wcsessionsend},caption={Send heart rate data to the
-phone from the watch.}]
+phone from the watch.},basicstyle=\small]
 self.session = WCSession.defaultSession()
 self.session!.sendMessage(
     ["heartRateArray": heartRateArray, "location": location],
@@ -208,7 +261,7 @@ self.session!.sendMessage(
 \end{lstlisting}
 
 \begin{lstlisting}[label={lst:wcsessionreceive},caption={Receiving heart rate
-data on phone, and storing it to the Documents folder.}]
+data on phone, and storing it to the Documents folder.},basicstyle=\small]
 func session(session: WCSession, 
              didReceiveMessage message: [String : AnyObject], 
              replyHandler: ([String : AnyObject]) -> Void) {

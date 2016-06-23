@@ -38,10 +38,10 @@ class MovementInterfaceController : WKInterfaceController, WCSessionDelegate  {
         super.awakeWithContext(context)
         localContext = context as? MovementInterfaceContext
         instructionLabel.setText(localContext?.instruction)
-        motionManager.accelerometerUpdateInterval = 0.1
     }
     
     override func willActivate() {
+        motionManager.accelerometerUpdateInterval = 0.1
         if motionManager.accelerometerAvailable {
             let accelerometerHandler:CMAccelerometerHandler = {
                 (data: CMAccelerometerData?, error:NSError?) -> Void in
