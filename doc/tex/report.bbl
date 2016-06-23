@@ -35,6 +35,11 @@ shu223/watchos-2-sampler, 2016.
 \newblock https://github.com/shu223/watchOS-2-Sampler, GitHub, Fetched:
   16.06.2016.
 
+\bibitem{spearsite}
+Spear: A speaker recognition toolkit based on bob, 2016.
+\newblock https://pythonhosted.org/bob.bio.spear/, Idiap Research Institute,
+  Fetched: 15.06.2016.
+
 \bibitem{watchheartrate}
 Your heart rate. what it means, and where on apple watch you’ll find it.,
   2016.

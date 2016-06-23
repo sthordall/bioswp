@@ -50,20 +50,20 @@ identification from how the subject walks, and research points towards this
 being possible from similar sensors within smartphones \cite{7181946}. 
 
 \subsubsection{Microphone}
-The watch contains a microphone, used for voice commands and speakerphone. The
+The watch contains a microphone, used for voice commands and speaker phone. The
 microphone can be accessed and used for recordings by the usage
-\texttt{AudioRecorderController} spawned with the function
-\texttt{presentAudioRecorderControllerWithOutputUrl}. 
+\texttt{AudioRecorderController}. Since the microphone is already used for
+speech recognition, it is very likely good enough for biometric identification. 
 
-%Speech and voice recognition is a field which has benefited immensely from 
-%machine learning techniques, such as deep neural networks, over the past few 
-%years \cite{6296526}. Speaker recognition is therefore achievable, but is 
-%difficult to run on small smart devices, such as the Apple Watch, due to the 
-%powerful computations and machine learning techniques required. Nearly all 
-%available libraries and software needs to run on powerful servers, with neural
-%nets already trained. 
-%Furthermore most of the existing software found focuses on \textit{what} the 
-%subject says, and not \textit{who} the subject is.
+Speech and voice recognition are fields which have benefited immensely from 
+machine learning techniques, such as deep neural networks, over the past few 
+years \cite{6296526}. Speaker recognition is therefore achievable, but is 
+difficult to run on small smart devices, such as the Apple Watch, due to the 
+powerful computations and machine learning techniques required. Nearly all 
+available libraries and software needs to run on powerful servers, with neural
+nets already trained. 
+Furthermore most of the existing software found focuses on \textit{what} the 
+subject says, and not \textit{who} the subject is.
 
 \subsubsection{NFC}
 The potential of an NFC chip in the watch seems promising for access control, as
@@ -107,7 +107,6 @@ possible, in order to extract continuous data.
 With the sensors and limitations taken into account, three systems will be
 proposed. These systems will be evaluated on their possibility of
 implementation, and their usefulness.
-The proposed systems will form the basis for the prototype.
 
 \subsubsection{Voice Recognition}
 This approach could utilize the built-in microphone to record and extract
@@ -123,7 +122,10 @@ perform adequately. Due to the limited processing power of the Apple Watch, and
 the requirements from machine learning, the recorded sound samples might need to
 be sent to a central server for processing. This could result in privacy issues,
 as biometric authentication data is sent over the network. It could also result
-in significant latency, worsening the user experience. 
+in significant latency, worsening the user experience. There exists open-source
+speech recognition software which runs on iOS devices and whichy maybe could be
+modified for voice recognition. A solution could be to run these on the phone,
+and only use the watch as a voice and graphical interface \cite{spearsite}.
 
 \subsubsection{Gait Recognition}
 %TODO: What would this require, how does it work etc.
