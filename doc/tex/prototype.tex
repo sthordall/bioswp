@@ -30,6 +30,15 @@ The different samplings can be configured upon spawning of their views, this is
 done from the main views controller, \texttt{MainInterfaceController}, see
 listing~\ref{lst:ui}.
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{../media/bioswp_ui.pdf}
+\caption{Flow of the developed prototypes user interface. Start menu allows for
+data extraction from the three sensors and to run DTW on arrays with 1000
+    entries.}
+\label{fig:ui}
+\end{figure}
+
 \begin{lstlisting}[label={lst:ui}, caption={Spawning of ViewControllers from the
 main interface, passing contexts setting up the sampling.},basicstyle=\small]
 @IBAction func movementButtonTapped() {
@@ -68,14 +77,6 @@ main interface, passing contexts setting up the sampling.},basicstyle=\small]
 \end{lstlisting}
 
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.8\textwidth]{../media/bioswp_ui.pdf}
-\caption{Flow of the developed prototypes user interface. Start menu allows for
-data extraction from the three sensors and to run DTW on arrays with 1000
-    entries.}
-\label{fig:ui}
-\end{figure}
 
 \subsection{Microphone}
 All functionality related to the microphone is handled by the microphone view,
