@@ -4,7 +4,7 @@ This section will analyze the potential for capturing biometrics on the
 software, i.e.\ which sensors are included in the watch and how they are 
 utilized by the provided frameworks. The sensors will also be evaluated 
 on their usefulness for biometric identification. Finally the analysis 
-should result in a selection of sensors found appropriate for the prototype.
+should result in a selection of proposed systems based on the findings.
 
 \subsection{Sensors}
 The \textit{Apple Watch} includes a multitude of sensors \cite{Ap16}, 
@@ -51,7 +51,7 @@ being possible from similar sensors within smartphones \cite{7181946}.
 
 \subsubsection{Microphone}
 The watch contains a microphone, used for voice commands and speaker phone. The
-microphone can be accessed and used for recordings by the usage
+microphone can be accessed and used for recordings through the
 \texttt{AudioRecorderController}. Since the microphone is already used for
 speech recognition, it is very likely good enough for biometric identification. 
 
@@ -111,19 +111,19 @@ implementation, and their usefulness.
 \subsubsection{Voice Recognition}
 This approach could utilize the built-in microphone to record and extract
 features from the subjects voice. The detection could rely both on the words
-being said and not. Voice recognition in general has seen an immense
+being said and not. Voice recognition in general has seen immense
 advancements, due to the growing popularity and efficiency of modern machine 
 learning technologies \cite{6296526}. 
 This approach would therefore be both possible and convenient for users, already 
 comfortable with talking to their smart devices. 
-The system would need to extract features of the subjects voice, not only said
+The system would need to extract features of the subjects vo ce, not only said
 words. This is quite challenging and might also need machine learning techniques to
 perform adequately. Due to the limited processing power of the Apple Watch, and
 the requirements from machine learning, the recorded sound samples might need to
 be sent to a central server for processing. This could result in privacy issues,
 as biometric authentication data is sent over the network. It could also result
 in significant latency, worsening the user experience. There exists open-source
-speech recognition software which runs on iOS devices and whichy maybe could be
+speech recognition software which runs on iOS devices and which maybe could be
 modified for voice recognition. A solution could be to run these on the phone,
 and only use the watch as a voice and graphical interface \cite{spearsite}.
 
@@ -150,8 +150,8 @@ recognition requires machine learning techniques such as \textit{principal
 \subsubsection{Photoplethysmography Recognition}
 %TODO: What would this require, how does it work etc.
 As mentioned the built-in heart rate sensor utilizes the technology
-\textit{photoplethysmography (PPG)} to detect the wearers heart rate. It is shown the
-raw data from sensors like these can be used for identification
+\textit{photoplethysmography (PPG)} to detect the wearers heart rate. It has
+been shown that raw data from sensors like these can be used for identification
 \cite{kavsaoglu2013a}. This approach like the others, require access to raw
 data, but does not require it continuously as with gait recognition.
 Unfortunately the recognition of subjects again requires advanced processing,

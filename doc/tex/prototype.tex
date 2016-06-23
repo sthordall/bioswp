@@ -15,7 +15,7 @@ Much of the code has been inspired by open source examples
 The main purpose of the prototype is therefore to sample the sensors, allowing
 for further analysis of the output.
 
-The prototype includes feature extraction from the three possible sensors,
+The prototype includes data extraction from the three possible sensors,
     i.e.\ the microphone, accelerometer and heart rate sensor. These should be
 easily sampled, and extracted from the device, this process will also be
 covered. 
@@ -107,7 +107,7 @@ self.presentAudioRecorderControllerWithOutputURL(
 })
 \end{lstlisting}
 
-\begin{table}[!h]
+\begin{table}[h]
 \caption{Available audio recording presets, their sampling rate and bit rate.}
 \label{tbl:rec}
 \centering
@@ -259,12 +259,12 @@ func getHeartRateStreamingQuery(workoutStartDate: NSDate) -> HKQuery? {
 The implementation of DTW is only included to showcase the computational power of
 the \textit{Apple Watch}, and to evaluate if it is viable to run such a rather
 heavy algorithm on the watch.
-The DTW algorithm has beenMotion Sensors implemented in the class
-\texttt{DynamicTimeWarper}. The class only has a single function,
-    \texttt{distance}, which takes to arrays of doubles, and returns the
-    calculated distance between the two. The algorithm is run by the
-    \texttt{DynamicTimeWarpInterfaceController}, which tracks how long time the
-    algorithm takes to execute the algorithm, on arrays filled with random data. 
+The DTW algorithm has been implemented in the class \texttt{DynamicTimeWarper}. 
+The class only has a single function, \texttt{distance}, which takes to arrays of 
+doubles, and returns the calculated distance between the two. The algorithm is 
+run by the \texttt{DynamicTimeWarpInterfaceController}, which tracks how long 
+time the algorithm takes to execute the algorithm, on arrays filled with random 
+data. 
 As seen in table~\ref{tbl:dtw} the complexity is as expected $O(n^2)$.
 This makes it viable to run smaller sets with this algorithm, and other distance
 measuring algorithms could probably also run on the device.
@@ -293,7 +293,7 @@ dispatch_async(queue) {
 
 \begin{table}[!h]
 \caption{Measured time it takes to run DTW on different sized arrays.}
-\label{tbl:rec}
+\label{tbl:dtw}
 \centering
 \begin{tabular}{ |c|c|  }
 \hline
