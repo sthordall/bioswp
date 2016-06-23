@@ -21,7 +21,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     
     // MARK: Private Variables
     private let healthStore = HKHealthStore()
-    private let hearRateUnit = HKUnit(fromString: "count/min")
+    private let heartRateUnit = HKUnit(fromString: "count/min")
     
     private var workoutActive = false
     private var workoutSession : HKWorkoutSession?
@@ -106,7 +106,6 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     }
     
     func workoutDidStart(date: NSDate) {
-        // TODO: Start some animations
         if let query = getHeartRateStreamingQuery(date) {
             startDate = date
             healthStore.executeQuery(query)
@@ -116,14 +115,12 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
     }
     
     func workoutDidEnd(date: NSDate) {
-        // TODO: When workout ends, save to injected NSURL
         if let query = getHeartRateStreamingQuery(date) {
             endDate = date
             healthStore.stopQuery(query)
             if let path = localContext?.dataStorePath {
                 storeHeartRateData(startDate!, endDate: endDate!, location: path)
             }
-//            self.popController()
         } else {
             displayError("Could not get heart rate streaming query")
         }
@@ -193,7 +190,7 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
                                                    }
         heartRateQuery.updateHandler = {(query, sampleObjs, deletedObjs, newAnchor, error) -> Void in
             self.anchor = newAnchor!
-//            self.updateHeartRate(sampleObjs)
+            self.updateHeartRate(sampleObjs)
         }
         return heartRateQuery
     }
@@ -202,9 +199,8 @@ class HeartRateInterfaceController: WKInterfaceController, HKWorkoutSessionDeleg
         guard let heartRateSamples = samples as? [HKQuantitySample] else { return }
         dispatch_async(dispatch_get_main_queue()) {
             guard let sample = heartRateSamples.first else { return }
-            let value = sample.quantity.doubleValueForUnit(self.hearRateUnit)
+            let value = sample.quantity.doubleValueForUnit(self.heartRateUnit)
             self.heartRateLabel.setText("\(value)")
-            // TODO: Update some GUI with value
         }
     }
 }
